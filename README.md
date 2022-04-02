@@ -1,6 +1,7 @@
 # MaterialFX Java 8
 
-This repository merges [MaterialFX](https://github.com/palexdev/MaterialFX) and [VirtualizedFX](https://github.com/palexdev/VirtualizedFX) for backward compatibility with Java 8.
+This repository merges [MaterialFX](https://github.com/palexdev/MaterialFX) and [VirtualizedFX](https://github.com/palexdev/VirtualizedFX),
+port them for compatibility with Java 8.
 This is the version it is based on:
 
 * [MaterialFX](https://github.com/palexdev/MaterialFX): v11.13.4 (fa039ffff32462547e98beee00c0822fa76fd2cc)
