@@ -1,0 +1,114 @@
+plugins {
+    id 'java-library'
+    id 'org.openjfx.javafxplugin'
+    id 'org.javamodularity.moduleplugin'
+}
+
+group 'io.github.palexdev'
+version '11.2.6'
+
+repositories {
+    mavenCentral()
+
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+javafx {
+    version = '17.0.2'
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.web']
+    configuration = 'compileOnly'
+}
+
+configurations {
+    testImplementation.extendsFrom compileOnly
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+
+    testImplementation "org.testfx:testfx-core:4.0.16-alpha"
+    testImplementation "org.testfx:testfx-junit5:4.0.16-alpha"
+    testImplementation name: 'scenicview'
+    testImplementation 'io.github.palexdev:materialfx:11.13.2'
+    testImplementation 'org.fxmisc.flowless:flowless:0.6.9'
+    testImplementation 'org.kordamp.ikonli:ikonli-core:12.3.0'
+    testImplementation 'org.kordamp.ikonli:ikonli-javafx:12.3.0'
+    testImplementation 'org.kordamp.ikonli:ikonli-fontawesome5-pack:12.3.0'
+}
+
+javadoc {
+    excludes = ['**/*.html', 'META-INF/**']
+
+    options.use = true
+    options.splitIndex = true
+    options.encoding = 'UTF-8'
+    options.author = true
+    options.version = true
+    options.windowTitle = "$project.name $project.version API"
+    options.docTitle = "$project.name $project.version API"
+    options.links = ['https://docs.oracle.com/en/java/javase/11/docs/api',
+                     'https://openjfx.io/javadoc/17']
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier.set('javadoc')
+    from javadoc.destinationDir
+}
+
+task sourcesJarBuild(type: Jar, dependsOn: classes) {
+    archiveClassifier.set('sources')
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJarBuild
+    archives jar
+}
+
+jar {
+    manifest {
+        attributes(
+                'Bundle-Name': project.name,
+                'Bundle-Description': "Alternative VirtualFlows for JavaFX",
+                'Bundle-SymbolicName': 'io.github.palexdev',
+                'Export-Package': 'io.github.palexdev.virtualizedfx.*'
+        )
+    }
+}
+
+allprojects {
+    plugins.withId("com.vanniktech.maven.publish") {
+        mavenPublish {
+            sonatypeHost = "S01"
+        }
+    }
+}
+
+task removeBnd(type: Delete) {
+    delete fileTree(project.buildDir) {
+        include '**/*.bnd'
+    }
+}
+
+build.dependsOn removeBnd
+
+compileTestJava {
+    moduleOptions {
+        compileOnClasspath = true
+    }
+}
+
+test {
+    useJUnitPlatform()
+
+    moduleOptions {
+        runOnClasspath = true
+    }
+}
