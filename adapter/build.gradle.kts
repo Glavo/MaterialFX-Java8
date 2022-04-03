@@ -4,13 +4,17 @@ val java8SourceSet = sourceSets.create("java8") {
     }
 }
 
-dependencies {
-    "java8CompileOnly"(files(rootProject.property("org.openjfx.java8.path")))
-}
-
 repositories {
+    flatDir {
+        dirs("${project(":adapter").projectDir}/libs")
+    }
     mavenCentral()
 }
+
+dependencies {
+    "java8CompileOnly"("javafx:jfx8")
+}
+
 
 javafx {
     configuration = "compileOnly"
