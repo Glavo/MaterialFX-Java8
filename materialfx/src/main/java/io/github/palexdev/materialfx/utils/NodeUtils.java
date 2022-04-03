@@ -68,7 +68,7 @@ public class NodeUtils {
 			fills.add(new BackgroundFill(fill, bf.getRadii(), bf.getInsets()));
 		}
 
-		region.setBackground(new Background(fills.toArray(BackgroundFill[]::new)));
+		region.setBackground(new Background(fills.toArray(new BackgroundFill[0])));
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class NodeUtils {
 			fills.add(new BackgroundFill(fill, bf.getRadii(), backgroundInsets));
 		}
 
-		region.setBackground(new Background(fills.toArray(BackgroundFill[]::new)));
+		region.setBackground(new Background(fills.toArray(new BackgroundFill[0])));
 	}
 
 	public static void updateBackground(Region region, Paint fill, CornerRadii cornerRadii, Insets backgroundInsets) {
@@ -103,7 +103,7 @@ public class NodeUtils {
 			fills.add(new BackgroundFill(fill, cornerRadii, backgroundInsets));
 		}
 
-		region.setBackground(new Background(fills.toArray(BackgroundFill[]::new)));
+		region.setBackground(new Background(fills.toArray(new BackgroundFill[0])));
 	}
 
 	/**

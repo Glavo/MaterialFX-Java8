@@ -29,6 +29,7 @@ import javafx.collections.ObservableList;
 import javafx.util.StringConverter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -102,7 +103,7 @@ public class ListSpinnerModel<T> extends AbstractSpinnerModel<T> {
 		}
 
 		ListChangeHelper.Change c = ListChangeHelper.processChange(change, NumberRange.of(0, Integer.MAX_VALUE));
-		ListChangeProcessor updater = new ListChangeProcessor(Set.of(currentIndex));
+		ListChangeProcessor updater = new ListChangeProcessor(Collections.singleton(currentIndex));
 		c.processReplacement((replaced, removed) -> {
 			T value = items.get(currentIndex);
 			setValue(value);

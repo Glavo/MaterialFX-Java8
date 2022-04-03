@@ -35,6 +35,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static io.github.palexdev.materialfx.effects.MFXDepthManager.shadowOf;
@@ -320,7 +321,7 @@ public class RippleGenerator extends Group {
 				);
 
 		static {
-			cssMetaDataList = List.of(RIPPLE_COLOR, RIPPLE_RADIUS, ANIMATE_BACKGROUND);
+			cssMetaDataList = Arrays.asList(RIPPLE_COLOR, RIPPLE_RADIUS, ANIMATE_BACKGROUND);
 		}
 
 	}

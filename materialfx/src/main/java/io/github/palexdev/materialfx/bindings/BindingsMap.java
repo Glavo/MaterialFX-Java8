@@ -124,7 +124,7 @@ public class BindingsMap<K, V> extends WeakHashMap<K, V> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void putAll(Map<? extends K, ? extends V> m) {
-		putAll(m.entrySet().toArray(Map.Entry[]::new));
+		putAll(m.entrySet().toArray(new Map.Entry[0]));
 	}
 
 	/**

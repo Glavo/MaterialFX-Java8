@@ -224,7 +224,7 @@ public class CellsManager<T, C extends Cell<T>> {
             Node node = cell.getNode();
             node.setVisible(true);
             cell.beforeLayout();
-            virtualFlow.getOrientationHelper().layout(node, i, cellW, cellH);
+            virtualFlow.getOrientationHelper(). layout(node, i, cellW, cellH);
             cell.afterLayout();
         }
     }

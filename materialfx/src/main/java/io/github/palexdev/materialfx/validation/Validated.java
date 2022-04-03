@@ -21,6 +21,7 @@ package io.github.palexdev.materialfx.validation;
 import javafx.css.PseudoClass;
 import javafx.scene.Node;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -58,7 +59,7 @@ public interface Validated {
 	 * @see MFXValidator#validate()
 	 */
 	default List<Constraint> validate() {
-		return getValidator() != null ? getValidator().validate() : List.of();
+		return getValidator() != null ? getValidator().validate() : Collections.emptyList();
 	}
 
 	/**

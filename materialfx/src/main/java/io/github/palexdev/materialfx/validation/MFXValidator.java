@@ -29,6 +29,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -158,7 +159,7 @@ public class MFXValidator {
 		List<Constraint> invalidConstraints = new ArrayList<>();
 		for (MFXValidator dependency : dependencies) {
 			if (!dependency.isValid()) {
-				if (failFast) return List.of(dependency.validate().get(0));
+				if (failFast) return Collections.singletonList(dependency.validate().get(0));
 				invalidConstraints.addAll(dependency.validate());
 			}
 		}

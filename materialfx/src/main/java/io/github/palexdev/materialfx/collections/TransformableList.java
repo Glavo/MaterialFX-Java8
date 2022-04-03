@@ -263,7 +263,7 @@ public class TransformableList<T> extends TransformationList<T, T> {
 	@Override
 	public T get(int index) {
 		if (index > size()) {
-			throw new IndexOutOfBoundsException(index);
+			throw new IndexOutOfBoundsException("Index out of range: " + index);
 		} else {
 			return getSource().get(indexes.get(index));
 		}
@@ -272,13 +272,13 @@ public class TransformableList<T> extends TransformationList<T, T> {
 	@Override
 	public int getSourceIndex(int index) {
 		if (index > size()) {
-			throw new IndexOutOfBoundsException(index);
+			throw new IndexOutOfBoundsException("Index out of range: " + index);
 		} else {
 			return indexes.get(index);
 		}
 	}
 
-	@Override
+	// @Override
 	public int getViewIndex(int index) {
 		int viewIndex = reversed ?
 				Collections.binarySearch(indexes, index, Collections.reverseOrder()) :

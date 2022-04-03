@@ -369,7 +369,7 @@ public class MFXDatePickerSkin extends MFXTextFieldSkin {
 				label.setAlignment(Pos.CENTER);
 				weekDaysLabels.add(label);
 			}
-			grid.addRow(0, weekDaysLabels.toArray(Node[]::new));
+			grid.addRow(0, weekDaysLabels.toArray(new Node[0]));
 			return;
 		}
 
@@ -447,7 +447,7 @@ public class MFXDatePickerSkin extends MFXTextFieldSkin {
 			}
 
 			if (!cellsInitialized) {
-				grid.addRow(row, children.toArray(Node[]::new));
+				grid.addRow(row, children.toArray(new Node[0]));
 			}
 
 			children.clear();

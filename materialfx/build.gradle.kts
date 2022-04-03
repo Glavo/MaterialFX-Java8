@@ -21,6 +21,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
 
     implementation(project(":VirtualizedFX"))
+    implementation(project(":adapter"))
 }
 
 javafx {

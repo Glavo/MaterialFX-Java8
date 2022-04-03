@@ -137,14 +137,14 @@ public class MFXTableView<T> extends Control {
 
 		ListChangeHelper.Change c = ListChangeHelper.processChange(change, NumberRange.of(0, Integer.MAX_VALUE));
 		ListChangeProcessor updater = new ListChangeProcessor(new HashSet<>(selectionModel.getSelection().keySet()));
-		c.processReplacement((changed, removed) -> selectionModel.replaceSelection(changed.toArray(Integer[]::new)));
+		c.processReplacement((changed, removed) -> selectionModel.replaceSelection(changed.toArray(new Integer[0])));
 		c.processAddition((from, to, added) -> {
 			updater.computeAddition(added.size(), from);
-			selectionModel.replaceSelection(updater.getIndexes().toArray(Integer[]::new));
+			selectionModel.replaceSelection(updater.getIndexes().toArray(new Integer[0]));
 		});
 		c.processRemoval((from, to, removed) -> {
 			updater.computeRemoval(removed, from);
-			getSelectionModel().replaceSelection(updater.getIndexes().toArray(Integer[]::new));
+			getSelectionModel().replaceSelection(updater.getIndexes().toArray(new Integer[0]));
 		});
 	}
 

@@ -37,6 +37,7 @@ import javafx.util.Callback;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -236,7 +237,7 @@ public class MFXTreeItem<T> extends AbstractMFXTreeItem<T> {
 				);
 
 		static {
-			cssMetaDataList = List.of(DURATION);
+			cssMetaDataList = Collections.singletonList(DURATION);
 		}
 	}
 

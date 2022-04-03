@@ -123,7 +123,7 @@ public class BiBindingManager {
 				helper.addSources(bindingBuilder.getSources());
 			}
 		} else {
-			helper = Objects.requireNonNullElseGet(bindingHelper, BiBindingHelper::new);
+			helper = bindingHelper != null ? bindingHelper : new BiBindingHelper<>();
 			helper.bind(target).with(bindingBuilder.targetUpdater()).addSources(bindingBuilder.getSources());
 		}
 

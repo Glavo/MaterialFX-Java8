@@ -219,7 +219,7 @@ public class MFXNotificationCenter extends Control implements MFXMenuControl {
 					if (notifications.isEmpty()) return;
 					setSelectionMode(true);
 					NumberRange<Integer> indexes = NumberRange.of(0, notifications.size() - 1);
-					selectionModel.replaceSelection(NumberRange.expandRange(indexes).toArray(Integer[]::new));
+					selectionModel.replaceSelection(NumberRange.expandRange(indexes).toArray(new Integer[0]));
 				}).get();
 
 		MFXContextMenuItem selectRead = MFXContextMenuItem.Builder.build()
@@ -352,14 +352,14 @@ public class MFXNotificationCenter extends Control implements MFXMenuControl {
 	 * Sets all the selected notifications' state to the given state.
 	 */
 	public void markSelectedNotificationsAs(NotificationState state) {
-		markNotificationsAs(state, selectionModel.getSelection().values().toArray(INotification[]::new));
+		markNotificationsAs(state, selectionModel.getSelection().values().toArray(new INotification[0]));
 	}
 
 	/**
 	 * Sets all the notifications' state to the given state.
 	 */
 	public void markAllNotificationsAs(NotificationState state) {
-		markNotificationsAs(state, notifications.toArray(INotification[]::new));
+		markNotificationsAs(state, notifications.toArray(new INotification[0]));
 	}
 
 	/**
@@ -383,14 +383,14 @@ public class MFXNotificationCenter extends Control implements MFXMenuControl {
 	 * Sets all the selected notifications' state to READ, then removes them from the notifications list.
 	 */
 	public void dismissSelected() {
-		dismiss(getSelectionModel().getSelection().values().toArray(INotification[]::new));
+		dismiss(getSelectionModel().getSelection().values().toArray(new INotification[0]));
 	}
 
 	/**
 	 * Sets all the notifications' state to READ, then removes them from the notifications list.
 	 */
 	public void dismissAll() {
-		dismiss(notifications.toArray(INotification[]::new));
+		dismiss(notifications.toArray(new INotification[0]));
 	}
 
 	//================================================================================
