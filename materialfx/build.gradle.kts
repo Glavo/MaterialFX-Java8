@@ -1,5 +1,3 @@
-import org.apache.tools.ant.taskdefs.condition.Os
-
 plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
@@ -13,8 +11,8 @@ repositories {
 }
 
 tasks.compileJava {
-    sourceCompatibility = "11"
-    targetCompatibility = "11"
+    sourceCompatibility = "9"
+    targetCompatibility = "9"
 
     modularity.inferModulePath.set(true)
 }
@@ -22,7 +20,7 @@ tasks.compileJava {
 dependencies {
     testImplementation("junit:junit:4.13.2")
 
-    implementation("io.github.palexdev:virtualizedfx:11.2.6")
+    implementation(project(":VirtualizedFX"))
 }
 
 javafx {

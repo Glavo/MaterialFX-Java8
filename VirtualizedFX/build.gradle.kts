@@ -16,8 +16,10 @@ repositories {
 }
 
 tasks.compileJava {
-    sourceCompatibility = "11"
-    targetCompatibility = "11"
+    sourceCompatibility = "9"
+    targetCompatibility = "9"
+
+    modularity.inferModulePath.set(true)
 }
 
 javafx {
