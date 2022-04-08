@@ -49,6 +49,7 @@ import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
 import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
+import org.glavo.materialfx.adapter.skin.SnapUtils;
 
 /**
  * This is the implementation of the {@code Skin} associated with every {@link MFXStepper}.
@@ -127,7 +128,7 @@ public class MFXStepperSkin extends SkinBase<MFXStepper> {
 		stepperBar.setPrefSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
 
 		progressBarGroup.layoutYProperty().bind(Bindings.createDoubleBinding(
-				() -> snapPositionY((stepperBar.getHeight() / 2.0) - (height / 2.0)),
+				() -> SnapUtils.snapPositionY((Region) getNode(), (stepperBar.getHeight() / 2.0) - (height / 2.0)),
 				stepperBar.heightProperty()
 		));
 
@@ -282,7 +283,7 @@ public class MFXStepperSkin extends SkinBase<MFXStepper> {
 		if (stepperToggle != null) {
 			Bounds bounds = stepperToggle.getGraphicBounds();
 			if (bounds != null) {
-				double minX = snapSizeX(stepperToggle.localToParent(bounds).getMinX());
+				double minX = SnapUtils.snapSizeX((Region) getNode(), stepperToggle.localToParent(bounds).getMinX());
 				updateProgressBar(minX + 10);
 			}
 		} else {
@@ -367,9 +368,9 @@ public class MFXStepperSkin extends SkinBase<MFXStepper> {
 
 		double bw = 125;
 		double bh = 34;
-		double pbx = snapPositionX(15);
-		double nbx = snapPositionX(w - bw - 15);
-		double by = snapPositionY((buttonsBox.getHeight() / 2.0) - (bh / 2.0));
+		double pbx = SnapUtils.snapPositionX((Region) getNode(), 15);
+		double nbx = SnapUtils.snapPositionX((Region) getNode(), w - bw - 15);
+		double by = SnapUtils.snapPositionY((Region) getNode(), (buttonsBox.getHeight() / 2.0) - (bh / 2.0));
 
 		previousButton.resizeRelocate(pbx, by, bw, bh);
 		nextButton.resizeRelocate(nbx, by, bw, bh);

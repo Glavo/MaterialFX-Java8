@@ -24,10 +24,11 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.skin.TableViewSkin;
 import javafx.scene.control.skin.VirtualFlow;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import org.glavo.materialfx.adapter.skin.TableViewSkin;
+import org.glavo.materialfx.adapter.skin.VirtualFlowWrapper;
 
 import java.util.Set;
 
@@ -35,7 +36,7 @@ public class MFXLegacyTableViewSkin<T> extends TableViewSkin<T> {
 	//================================================================================
 	// Properties
 	//================================================================================
-	private final VirtualFlow<?> virtualFlow;
+	private final VirtualFlowWrapper<?> virtualFlow;
 	private final Pane header;
 
 	private final ScrollBar vBar;
@@ -44,7 +45,7 @@ public class MFXLegacyTableViewSkin<T> extends TableViewSkin<T> {
 	public MFXLegacyTableViewSkin(TableView<T> tableView) {
 		super(tableView);
 
-		virtualFlow = (VirtualFlow<?>) tableView.lookup(".virtual-flow");
+		virtualFlow = lookupVirtualFlow(tableView);
 		header = (Pane) tableView.lookup("TableHeaderRow");
 
 		this.vBar = new ScrollBar();

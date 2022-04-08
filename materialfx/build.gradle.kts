@@ -1,4 +1,5 @@
 plugins {
+    `java-library`
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
@@ -20,8 +21,8 @@ tasks.compileJava {
 dependencies {
     testImplementation("junit:junit:4.13.2")
 
-    implementation(project(":VirtualizedFX"))
-    implementation(project(":adapter"))
+    api(project(":VirtualizedFX"))
+    api(project(":adapter"))
 }
 
 javafx {

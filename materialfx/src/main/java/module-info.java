@@ -5,6 +5,7 @@ module MaterialFX {
 	requires transitive java.desktop;
 
 	requires VirtualizedFX;
+	requires org.glavo.materialfx.adapter;
 
 	exports io.github.palexdev.materialfx;
 

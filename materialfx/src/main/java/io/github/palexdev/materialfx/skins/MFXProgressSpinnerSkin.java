@@ -36,6 +36,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import org.glavo.materialfx.adapter.skin.SnapUtils;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -372,7 +373,7 @@ public class MFXProgressSpinnerSkin extends SkinBase<MFXProgressSpinner> {
 
 		final double strokeWidth = arc.getStrokeWidth();
 		final double radius = Math.min(contentWidth, contentHeight) / 2 - strokeWidth / 2;
-		final double arcSize = snapSizeX(radius * 2 + strokeWidth);
+		final double arcSize = SnapUtils.snapSizeX((Region) getNode(), radius * 2 + strokeWidth);
 
 		arcPane.resizeRelocate((contentWidth - arcSize) / 2 + 1, (contentHeight - arcSize) / 2 + 1, arcSize, arcSize);
 		updateArcLayout(radius, arcSize);

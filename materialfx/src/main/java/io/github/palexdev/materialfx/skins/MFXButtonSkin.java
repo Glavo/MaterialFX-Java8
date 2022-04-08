@@ -21,8 +21,8 @@ package io.github.palexdev.materialfx.skins;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.effects.MFXDepthManager;
 import io.github.palexdev.materialfx.effects.ripple.MFXCircleRippleGenerator;
-import javafx.scene.control.skin.ButtonSkin;
 import javafx.scene.input.MouseEvent;
+import org.glavo.materialfx.adapter.skin.ButtonSkin;
 
 /**
  * This is the implementation of the {@code Skin} associated with every {@link MFXButton}.

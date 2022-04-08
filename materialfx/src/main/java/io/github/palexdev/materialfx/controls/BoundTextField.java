@@ -22,8 +22,8 @@ import javafx.beans.binding.StringBinding;
 import javafx.scene.Node;
 import javafx.scene.control.Skin;
 import javafx.scene.control.TextField;
-import javafx.scene.control.skin.TextFieldSkin;
 import javafx.scene.text.Text;
+import org.glavo.materialfx.adapter.skin.TextFieldSkin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,7 +136,14 @@ public class BoundTextField extends TextField {
 				if (passwordField.isShowPassword()) return txt;
 
 				int n = txt.length();
-				return passwordField.getHideCharacter().repeat(n);
+				//return passwordField.getHideCharacter().repeat(n);
+				String str = passwordField.getHideCharacter();
+
+				StringBuilder builder = new StringBuilder();
+				for (int i = 0; i < n; i++) {
+					builder.append(str);
+				}
+				return builder.toString();
 			}
 			return txt;
 		}

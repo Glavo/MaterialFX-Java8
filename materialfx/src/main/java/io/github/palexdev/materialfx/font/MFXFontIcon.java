@@ -75,7 +75,7 @@ public class MFXFontIcon extends Text {
 		textProperty().bind(Bindings.createStringBinding(
 				() -> {
 					String desc = getDescription();
-					return desc != null && !desc.isBlank() ? descriptionToString(desc) : "";
+					return desc != null && !desc.trim().isEmpty() ? descriptionToString(desc) : "";
 				}, description
 		));
 

@@ -49,6 +49,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextBoundsType;
+import org.glavo.materialfx.adapter.skin.SnapUtils;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -317,7 +318,7 @@ public class MFXSlider extends Control {
 					Orientation orientation = getOrientation();
 					double x = orientation == Orientation.HORIZONTAL ? (getWidth() / 2) - (caret.prefWidth(-1) / 2) : getHeight();
 					double y = orientation == Orientation.HORIZONTAL ? getHeight() : -(caret.prefHeight(-1) / 2) + (getHeight() / 2);
-					caret.relocate(snapPositionX(x), snapPositionY(y));
+					caret.relocate(SnapUtils.snapPositionX(this, x), SnapUtils.snapPositionY(this, y));
 				}
 			};
 			container.setId("popupContent");

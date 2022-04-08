@@ -55,6 +55,7 @@ import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
 import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
+import org.glavo.materialfx.adapter.skin.SnapUtils;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -668,14 +669,14 @@ public class MFXSliderSkin extends SkinBase<MFXSlider> {
 				zeroPos = NumberUtils.clamp(zeroPos, 0, slider.getWidth());
 			}
 
-			thumbX = snapPositionX(
+			thumbX = SnapUtils.snapPositionX(((Region) getNode()),
 					NumberUtils.mapOneRangeToAnother(
 							slider.getValue(),
 							NumberRange.of(slider.getMin(), slider.getMax()),
 							NumberRange.of(0.0, slider.getWidth()),
 							2
 					) - halfThumbWidth());
-			thumbY = snapPositionY(-halfThumbHeight() + (slider.getHeight() / 2));
+			thumbY = SnapUtils.snapPositionY((Region) getNode(), -halfThumbHeight() + (slider.getHeight() / 2));
 
 			if (!slider.isBidirectional() || ignoreBidirectional) {
 				barW = thumbX - zeroPos + (halfThumbWidth() * 3);
@@ -710,14 +711,14 @@ public class MFXSliderSkin extends SkinBase<MFXSlider> {
 					tickData.tick = buildTick();
 					tickData.tick.getStyleClass().setAll(NumberUtils.isEven(i) ? "tick-even" : "tick-odd");
 					tickData.tickVal = (double) tickMark.getValue();
-					tickData.x = snapPositionX(ticksX.get(i) - (tickData.halfTickWidth() / 1.5));
+					tickData.x = SnapUtils.snapPositionX((Region) getNode(), ticksX.get(i) - (tickData.halfTickWidth() / 1.5));
 					ticksData.add(tickData);
 
 					if (i == tickMarks.size() - 1) {
 						tickData.x -= tickData.halfTickWidth();
 					}
 				}
-				ticksY = snapPositionY(-ticksData.get(0).halfTickHeight() + (slider.getHeight() / 2));
+				ticksY = SnapUtils.snapPositionY((Region) getNode(), -ticksData.get(0).halfTickHeight() + (slider.getHeight() / 2));
 				positionTicks();
 			}
 		}
@@ -845,7 +846,7 @@ public class MFXSliderSkin extends SkinBase<MFXSlider> {
 				x = thumb.getLayoutX() - (popup.getHeight() / 2) + (layoutData.halfThumbWidth() / 2) + 1;
 			}
 
-			return snapPositionX(x);
+			return SnapUtils.snapPositionX((Region) getNode(), x);
 		}
 
 		/**
@@ -871,7 +872,7 @@ public class MFXSliderSkin extends SkinBase<MFXSlider> {
 				}
 			}
 
-			return snapPositionY(y);
+			return SnapUtils.snapPositionY((Region) getNode(), y);
 		}
 
 		/**

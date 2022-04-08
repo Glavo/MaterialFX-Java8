@@ -19,7 +19,7 @@
 package io.github.palexdev.materialfx.skins;
 
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
-import javafx.scene.control.skin.ScrollPaneSkin;
+import org.glavo.materialfx.adapter.skin.ScrollPaneSkin;
 import javafx.scene.layout.StackPane;
 
 /**

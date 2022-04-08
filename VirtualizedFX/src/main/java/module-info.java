@@ -3,6 +3,8 @@ module VirtualizedFX {
 	requires transitive javafx.graphics;
 	requires transitive javafx.controls;
 
+	requires org.glavo.materialfx.adapter;
+
 	exports io.github.palexdev.virtualizedfx;
 	
 	// Beans Package

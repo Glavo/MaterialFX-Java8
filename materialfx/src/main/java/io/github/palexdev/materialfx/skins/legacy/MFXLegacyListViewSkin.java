@@ -32,10 +32,10 @@ import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ScrollBar;
-import javafx.scene.control.skin.ListViewSkin;
-import javafx.scene.control.skin.VirtualFlow;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
+import org.glavo.materialfx.adapter.skin.ListViewSkin;
+import org.glavo.materialfx.adapter.skin.VirtualFlowWrapper;
 
 import java.util.Set;
 
@@ -49,7 +49,7 @@ public class MFXLegacyListViewSkin<T> extends ListViewSkin<T> {
 	//================================================================================
 	// Properties
 	//================================================================================
-	private final VirtualFlow<?> virtualFlow;
+	private final VirtualFlowWrapper<?> virtualFlow;
 
 	private final ScrollBar vBar;
 	private final ScrollBar hBar;
@@ -63,7 +63,7 @@ public class MFXLegacyListViewSkin<T> extends ListViewSkin<T> {
 	public MFXLegacyListViewSkin(final MFXLegacyListView<T> listView) {
 		super(listView);
 
-		virtualFlow = (VirtualFlow<?>) listView.lookup(".virtual-flow");
+		virtualFlow = lookupVirtualFlow(listView);
 		listView.setEffect(MFXDepthManager.shadowOf(listView.getDepthLevel()));
 
 		this.vBar = new ScrollBar();

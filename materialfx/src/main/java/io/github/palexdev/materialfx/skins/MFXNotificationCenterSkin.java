@@ -43,6 +43,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
+import org.glavo.materialfx.adapter.skin.SnapUtils;
 
 /**
  * This is the skin associated with every {@link MFXNotificationCenter}.
@@ -211,7 +212,7 @@ public class MFXNotificationCenterSkin extends SkinBase<MFXNotificationCenter> {
 				double padding = notificationCenter.getCounterStyle() == NotificationCounterStyle.DOT ? 3 : 7;
 				double textW = counterText.prefWidth(-1);
 				double textH = counterText.prefHeight(-1);
-				double size = textW > textH ? snapSizeX(textW + padding) : snapSizeY(textH + padding);
+				double size = textW > textH ? SnapUtils.snapSizeX((Region) getNode(), textW + padding) : SnapUtils.snapSizeY((Region) getNode(),textH + padding);
 				setSize(size);
 				notificationCenter.requestLayout();
 				requestLayout();

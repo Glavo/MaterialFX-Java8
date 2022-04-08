@@ -27,7 +27,9 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
 import javafx.util.Callback;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Base class for every item used in {@code MFXTreeView}.
@@ -124,9 +126,14 @@ public abstract class AbstractMFXTreeItem<T> extends Control {
 			return 0;
 		}
 
+		/*
 		return TreeItemStream.flattenTree(getRoot())
 				.takeWhile(item -> !item.equals(this))
 				.count();
+
+		 */
+
+		return TreeItemStream.flattenTree(getRoot()).collect(Collectors.toList()).indexOf(this);
 	}
 
 	/**

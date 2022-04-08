@@ -27,6 +27,7 @@ import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
+import org.glavo.materialfx.adapter.skin.SnapUtils;
 
 /**
  * Utilities for JavaFX's {@link Pos} and {@link NotificationPos}.
@@ -88,10 +89,10 @@ public class PositionUtils {
 		Insets snappedMargin = margin == null ? Insets.EMPTY : margin;
 		if (snapToPixel) {
 			snappedMargin = InsetsFactory.of(
-					parent.snapSpaceY(snappedMargin.getTop()),
-					parent.snapSpaceX(snappedMargin.getRight()),
-					parent.snapSpaceY(snappedMargin.getBottom()),
-					parent.snapSpaceX(snappedMargin.getLeft())
+					SnapUtils.snapSpaceY(parent, snappedMargin.getTop()),
+					SnapUtils.snapSpaceX(parent, snappedMargin.getRight()),
+					SnapUtils.snapSpaceY(parent, snappedMargin.getBottom()),
+					SnapUtils.snapSpaceX(parent, snappedMargin.getLeft())
 			);
 		}
 
@@ -104,10 +105,10 @@ public class PositionUtils {
 		Insets snappedMargin = margin == null ? Insets.EMPTY : margin;
 		if (snapMargin) {
 			snappedMargin = InsetsFactory.of(
-					parent.snapSpaceY(snappedMargin.getTop()),
-					parent.snapSpaceX(snappedMargin.getRight()),
-					parent.snapSpaceY(snappedMargin.getBottom()),
-					parent.snapSpaceX(snappedMargin.getLeft())
+					SnapUtils.snapSpaceY(parent, snappedMargin.getTop()),
+					SnapUtils.snapSpaceX(parent, snappedMargin.getRight()),
+					SnapUtils.snapSpaceY(parent, snappedMargin.getBottom()),
+					SnapUtils.snapSpaceX(parent, snappedMargin.getLeft())
 			);
 		}
 
@@ -115,17 +116,17 @@ public class PositionUtils {
 		final double rightMargin = snappedMargin.getRight();
 		final double xOffset = leftMargin + computeXOffset(areaWidth - leftMargin - rightMargin, child.getLayoutBounds().getWidth(), hAlignment);
 		final double xPosition = areaX + xOffset;
-		return snapToPixel ? parent.snapPositionX(xPosition) : xPosition;
+		return snapToPixel ? SnapUtils.snapPositionX(parent, xPosition) : xPosition;
 	}
 
 	public static double computeYPosition(Region parent, Node child, double areaY, double areaHeight, double areaBaselineOffset, Insets margin, boolean snapMargin, VPos vAlignment, boolean snapToPixel) {
 		Insets snappedMargin = margin == null ? Insets.EMPTY : margin;
 		if (snapMargin) {
 			snappedMargin = InsetsFactory.of(
-					parent.snapSpaceY(snappedMargin.getTop()),
-					parent.snapSpaceX(snappedMargin.getRight()),
-					parent.snapSpaceY(snappedMargin.getBottom()),
-					parent.snapSpaceX(snappedMargin.getLeft())
+					SnapUtils.snapSpaceY(parent, snappedMargin.getTop()),
+					SnapUtils.snapSpaceX(parent, snappedMargin.getRight()),
+					SnapUtils.snapSpaceY(parent, snappedMargin.getBottom()),
+					SnapUtils.snapSpaceX(parent, snappedMargin.getLeft())
 			);
 		}
 
@@ -144,7 +145,7 @@ public class PositionUtils {
 			yOffset = topMargin + computeYOffset(areaHeight - topMargin - bottomMargin, child.getLayoutBounds().getHeight(), vAlignment);
 		}
 		final double yPosition = areaY + yOffset;
-		return snapToPixel ? parent.snapPositionY(yPosition) : yPosition;
+		return snapToPixel ? SnapUtils.snapPositionY(parent, yPosition) : yPosition;
 	}
 
 	private static double computeXOffset(double areaWidth, double contentWidth, HPos hAlignment) {

@@ -28,11 +28,13 @@ import io.github.palexdev.materialfx.i18n.I18N;
 import io.github.palexdev.materialfx.validation.MFXValidator;
 import javafx.scene.control.SkinBase;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import javafx.stage.Modality;
+import org.glavo.materialfx.adapter.skin.SnapUtils;
 
 /**
  * This is the implementation of the {@code Skin} associated with every {@link MFXStepperToggle}.
@@ -146,22 +148,22 @@ public class MFXStepperToggleSkin extends SkinBase<MFXStepperToggle> {
 		super.layoutChildren(x, y, w, h);
 		MFXStepperToggle stepperToggle = getSkinnable();
 
-		double lw = snapSizeX(label.prefWidth(-1));
-		double lh = snapSizeY(label.prefHeight(-1));
-		double lx = snapPositionX(circle.getBoundsInParent().getCenterX() - (lw / 2.0));
+		double lw = SnapUtils.snapSizeX((Region) getNode(), label.prefWidth(-1));
+		double lh = SnapUtils.snapSizeY((Region) getNode(), label.prefHeight(-1));
+		double lx = SnapUtils.snapPositionX((Region) getNode(), circle.getBoundsInParent().getCenterX() - (lw / 2.0));
 		double ly = 0;
 
 		if (stepperToggle.getTextPosition() == TextPosition.BOTTOM) {
 			label.setTranslateY(0);
-			ly = snapPositionY(circle.getBoundsInParent().getMaxY() + stepperToggle.getLabelTextGap());
+			ly = SnapUtils.snapPositionY((Region) getNode(), circle.getBoundsInParent().getMaxY() + stepperToggle.getLabelTextGap());
 			label.resizeRelocate(lx, ly, lw, lh);
 		} else {
 			label.resizeRelocate(lx, ly, lw, lh);
 			label.setTranslateY(-stepperToggle.getLabelTextGap() - lh);
 		}
 
-		double ix = snapPositionX(circle.getBoundsInParent().getMaxX());
-		double iy = snapPositionY(circle.getBoundsInParent().getMinY() - 6);
+		double ix = SnapUtils.snapPositionX((Region) getNode(), circle.getBoundsInParent().getMaxX());
+		double iy = SnapUtils.snapPositionY((Region) getNode(), circle.getBoundsInParent().getMinY() - 6);
 		errorIcon.resizeRelocate(ix, iy, 16, 16);
 	}
 }

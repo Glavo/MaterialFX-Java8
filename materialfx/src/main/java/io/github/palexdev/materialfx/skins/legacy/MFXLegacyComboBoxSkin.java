@@ -28,10 +28,12 @@ import javafx.animation.ScaleTransition;
 import javafx.beans.binding.Bindings;
 import javafx.css.PseudoClass;
 import javafx.scene.control.Label;
-import javafx.scene.control.skin.ComboBoxListViewSkin;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
+import org.glavo.materialfx.adapter.skin.ComboBoxListViewSkin;
+import org.glavo.materialfx.adapter.skin.SnapUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -186,8 +188,8 @@ public class MFXLegacyComboBoxSkin<T> extends ComboBoxListViewSkin<T> {
 	protected void layoutChildren(double x, double y, double w, double h) {
 		super.layoutChildren(x, y, w, h);
 
-		double lw = snapSizeX(TextUtils.computeLabelWidth(validate));
-		double lh = snapSizeY(TextUtils.computeTextHeight(validate.getFont(), validate.getText()));
+		double lw = SnapUtils.snapSizeX((Region) getNode(), TextUtils.computeLabelWidth(validate));
+		double lh = SnapUtils.snapSizeY((Region) getNode(), TextUtils.computeTextHeight(validate.getFont(), validate.getText()));
 		double lx = 0;
 		double ly = h + (padding * 0.7);
 

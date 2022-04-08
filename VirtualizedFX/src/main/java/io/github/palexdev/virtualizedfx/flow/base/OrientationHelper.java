@@ -25,6 +25,7 @@ import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.Region;
+import org.glavo.materialfx.adapter.skin.SnapUtils;
 
 /**
  * Helper class to avoid as much as possible if/else statements to check
@@ -320,7 +321,7 @@ public interface OrientationHelper {
          */
         @Override
         public void layout(Node node, int index, double cellW, double cellH) {
-            double pos = container.snapPositionX(cellW * index);
+            double pos = SnapUtils.snapPositionX(container, cellW * index);
             resizeRelocate(node, pos, cellW, cellH);
         }
 
@@ -562,7 +563,7 @@ public interface OrientationHelper {
          */
         @Override
         public void layout(Node node, int index, double cellW, double cellH) {
-            double pos = container.snapPositionY(cellH * index);
+            double pos = SnapUtils.snapPositionY(container, cellH * index);
             resizeRelocate(node, pos, cellW, cellH);
         }
 
