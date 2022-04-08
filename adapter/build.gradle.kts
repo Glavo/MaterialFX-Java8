@@ -17,6 +17,15 @@ dependencies {
     "java8CompileOnly"("javafx:jfx8")
 }
 
+tasks.create<Jar>("javadocJar") {
+    archiveClassifier.set("javadoc")
+}
+
+tasks.create<Jar>("sourcesJarBuild") {
+    dependsOn(tasks.classes)
+    archiveClassifier.set("sources")
+    from(sourceSets.main.get().allSource)
+}
 
 javafx {
     configuration = "compileOnly"
@@ -63,4 +72,12 @@ tasks.jar {
     dependsOn(tasks["multiJar"])
 
     enabled = false
+}
+
+publishing {
+    (publications["maven"] as MavenPublication).apply {
+        artifact(tasks["multiJar"])
+        artifact(tasks["javadocJar"])
+        artifact(tasks["sourcesJarBuild"])
+    }
 }

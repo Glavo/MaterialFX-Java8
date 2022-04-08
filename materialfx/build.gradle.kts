@@ -60,10 +60,12 @@ tasks.create<Jar>("sourcesJarBuild") {
     from(sourceSets.main.get().allSource)
 }
 
-artifacts {
-    archives(tasks["javadocJar"])
-    archives(tasks["sourcesJarBuild"])
-    archives(tasks["jar"])
+publishing {
+    (publications["maven"] as MavenPublication).apply {
+        from(components["java"])
+        artifact(tasks["javadocJar"])
+        artifact(tasks["sourcesJarBuild"])
+    }
 }
 
 tasks.jar {
