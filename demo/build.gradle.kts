@@ -1,5 +1,8 @@
+import java.io.RandomAccessFile
+
 plugins {
     application
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 repositories {
@@ -34,6 +37,32 @@ application {
         mainClass.set(main)
     } else {
         mainClass.set("io.github.palexdev.materialfx.demo.Demo")
+    }
+}
+
+tasks.compileJava {
+    options.release.set(9)
+    doLast {
+        val tree = fileTree(destinationDirectory)
+        tree.include("**/*.class")
+        tree.exclude("module-info.class")
+        tree.forEach {
+            RandomAccessFile(it, "rw").use { rf ->
+                rf.seek(7)   // major version
+                rf.write(52)   // java 8
+                rf.close()
+            }
+        }
+    }
+}
+
+tasks.shadowJar {
+    manifest {
+        attributes("Multi-Release" to "true")
+    }
+
+    dependencies {
+        exclude(dependency("org.openjfx:.*"))
     }
 }
 

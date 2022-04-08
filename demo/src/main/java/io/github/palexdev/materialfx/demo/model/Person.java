@@ -65,7 +65,7 @@ public class Person {
 	}
 
 	public Person randomAge() {
-		setAge(RandomUtils.random.nextInt(18, 81));
+		setAge(RandomUtils.nextInt(18, 81));
 		return this;
 	}
 

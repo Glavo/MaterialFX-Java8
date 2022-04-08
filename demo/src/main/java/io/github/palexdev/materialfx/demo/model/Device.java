@@ -101,6 +101,6 @@ public class Device {
 	}
 
 	public static int randomID() {
-		return RandomUtils.random.nextInt(100000, 1000000);
+		return RandomUtils.nextInt(100000, 1000000);
 	}
 }

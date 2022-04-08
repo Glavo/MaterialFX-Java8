@@ -89,12 +89,10 @@ public class ComboBoxesController implements Initializable {
 
 		MFXTooltip.of(
 				nEditCombo,
-				"""
-						This combo box allows you to add new items to the list (no duplicates allowed) when pressing Enter.
-						It also allows to restore the previous selected item by pressing Ctrl+Shift+Z.
-						Both key strokes are default for all MFXComboBoxes but the action to perform must be configured by the user.
-						This combo box is also set to scroll to the selected item when opening the popup.
-						"""
+				"This combo box allows you to add new items to the list (no duplicates allowed) when pressing Enter.\n" +
+				"It also allows to restore the previous selected item by pressing Ctrl+Shift+Z.\n" +
+				"Both key strokes are default for all MFXComboBoxes but the action to perform must be configured by the user.\n" +
+				"This combo box is also set to scroll to the selected item when opening the popup.\n"
 		).install();
 
 		StringConverter<Person> converter = FunctionalStringConverter.to(person -> (person == null) ? "" : person.getName() + " " + person.getSurname());

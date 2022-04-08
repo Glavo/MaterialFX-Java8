@@ -33,6 +33,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class DialogsController {
 	private MFXGenericDialog dialogContent;
@@ -60,9 +61,9 @@ public class DialogsController {
 					.get();
 
 			dialogContent.addActions(
-					Map.entry(new MFXButton("Confirm"), event -> {
+					new SimpleMapEntry<>(new MFXButton("Confirm"), event -> {
 					}),
-					Map.entry(new MFXButton("Cancel"), event -> dialog.close())
+					new SimpleMapEntry<>(new MFXButton("Cancel"), event -> dialog.close())
 			);
 
 			dialogContent.setMaxSize(400, 200);
@@ -111,5 +112,53 @@ public class DialogsController {
 
 		if (styleClass != null)
 			dialogContent.getStyleClass().add(styleClass);
+	}
+
+	private static final class SimpleMapEntry<K, V> implements Map.Entry<K, V> {
+		private final K key;
+		private final V value;
+
+		SimpleMapEntry(K key, V value) {
+			this.key = key;
+			this.value = value;
+		}
+
+		@Override
+		public K getKey() {
+			return key;
+		}
+
+		@Override
+		public V getValue() {
+			return value;
+		}
+
+		@Override
+		public V setValue(V value) {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public boolean equals(Object o) {
+			if (this == o) {
+				return true;
+			}
+			if (!(o instanceof Map.Entry)) {
+				return false;
+			}
+
+			Map.Entry<?, ?> other = (Map.Entry<?, ?>) o;
+			return Objects.equals(key, other.getKey()) && Objects.equals(value, other.getValue());
+		}
+
+		@Override
+		public int hashCode() {
+			return key.hashCode() ^ value.hashCode();
+		}
+
+		@Override
+		public String toString() {
+			return key + "=" + value;
+		}
 	}
 }

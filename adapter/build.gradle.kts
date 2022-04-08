@@ -1,3 +1,5 @@
+import java.io.RandomAccessFile
+
 val java8SourceSet = sourceSets.create("java8") {
     java {
         srcDirs("src/main/java8")
@@ -22,6 +24,19 @@ javafx {
 
 tasks.compileJava {
     options.release.set(9)
+
+    doLast {
+        val tree = fileTree(destinationDirectory)
+        tree.include("**/*.class")
+        tree.exclude("module-info.class")
+        tree.forEach {
+            RandomAccessFile(it, "rw").use { rf ->
+                rf.seek(7)   // major version
+                rf.write(52)   // java 8
+                rf.close()
+            }
+        }
+    }
 }
 
 tasks.named<JavaCompile>("compileJava8Java") {

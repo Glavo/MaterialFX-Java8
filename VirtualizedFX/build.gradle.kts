@@ -1,3 +1,5 @@
+import java.io.RandomAccessFile
+
 plugins {
     `java-library`
     id("org.openjfx.javafxplugin")
@@ -20,6 +22,19 @@ tasks.compileJava {
     targetCompatibility = "9"
 
     modularity.inferModulePath.set(true)
+
+    doLast {
+        val tree = fileTree(destinationDirectory)
+        tree.include("**/*.class")
+        tree.exclude("module-info.class")
+        tree.forEach {
+            RandomAccessFile(it, "rw").use { rf ->
+                rf.seek(7)   // major version
+                rf.write(52)   // java 8
+                rf.close()
+            }
+        }
+    }
 }
 
 javafx {

@@ -43,6 +43,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import static io.github.palexdev.materialfx.demo.MFXDemoResourcesLoader.loadURL;
 
@@ -133,7 +134,7 @@ public class DemoController implements Initializable {
 						}
 						return toggle;
 					})
-					.toList();
+					.collect(Collectors.toList());
 			navBar.getChildren().setAll(nodes);
 		});
 		loader.start();

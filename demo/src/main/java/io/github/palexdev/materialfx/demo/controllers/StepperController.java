@@ -38,6 +38,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -101,7 +102,7 @@ public class StepperController implements Initializable {
 		step3.setContent(step3Grid);
 		step3.getValidator().constraint("Data must be confirmed", checkbox.selectedProperty());
 
-		return List.of(step1, step2, step3);
+		return Arrays.asList(step1, step2, step3);
 	}
 
 	private <T extends Node & Validated> Node wrapNodeForValidation(T node) {

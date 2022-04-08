@@ -42,4 +42,10 @@ public class RandomUtils {
 		int index = random.nextInt(list.size());
 		return list.get(index);
 	}
+
+	public static int nextInt(int origin, int bound) {
+		int value = random.nextInt();
+
+		return (value % (bound - origin)) + origin;
+	}
 }
