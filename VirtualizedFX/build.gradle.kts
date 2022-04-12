@@ -27,7 +27,7 @@ repositories {
 
 val compileModuleInfo = tasks.create<org.glavo.mic.tasks.CompileModuleInfo>("compileModuleInfo") {
     sourceFile.set(file("src/main/module-info.java"))
-    targetFile.set(buildDir.resolve("classes/java/main/module-info/module-info.class"))
+    targetFile.set(buildDir.resolve("classes/java/module-info/module-info.class"))
 }
 
 
