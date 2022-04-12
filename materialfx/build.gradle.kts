@@ -97,6 +97,7 @@ tasks.shadowJar {
     mergeServiceFiles()
     dependencies {
         include(project(":VirtualizedFX"))
+        include(project(":adapter"))
     }
 }
 
