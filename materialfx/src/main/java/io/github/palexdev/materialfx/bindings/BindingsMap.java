@@ -74,7 +74,7 @@ public class BindingsMap<K, V> extends WeakHashMap<K, V> {
 	}
 
 	@SafeVarargs
-	private void updateKeysList(K... keys) {
+	private final void updateKeysList(K... keys) {
 		LinkedHashSet<K> uniqueKeys = orderedKeys.stream().map(WeakReference::get).collect(Collectors.toCollection(LinkedHashSet::new));
 		uniqueKeys.addAll(Arrays.asList(keys));
 		orderedKeys = uniqueKeys.stream().map(WeakReference::new).collect(Collectors.toCollection(LinkedList::new));
@@ -82,7 +82,7 @@ public class BindingsMap<K, V> extends WeakHashMap<K, V> {
 	}
 
 	@SafeVarargs
-	private void updateKeysList(Map.Entry<K, V>... entries) {
+	private final void updateKeysList(Map.Entry<K, V>... entries) {
 		LinkedHashSet<K> uniqueKeys = orderedKeys.stream().map(WeakReference::get).collect(Collectors.toCollection(LinkedHashSet::new));
 		List<K> keys = Stream.of(entries).map(Map.Entry::getKey).collect(Collectors.toList());
 		uniqueKeys.addAll(keys);

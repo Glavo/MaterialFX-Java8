@@ -76,7 +76,7 @@ public class MFXNotificationSystem extends AbstractMFXNotificationSystem {
 		notificationContainer = new Group();
 		notificationContainer.setOpacity(0.0);
 
-		popup.setContent(notificationContainer);
+		popup.setContentNode(notificationContainer);
 	}
 
 	//================================================================================

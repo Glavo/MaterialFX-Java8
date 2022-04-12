@@ -106,7 +106,7 @@ public class MFXDatePicker extends MFXTextField {
 	private final ConsumerProperty<String> onCommit = new ConsumerProperty<>(s -> setValue(getConverterSupplier().get().fromString(s)));
 	private final ConsumerProperty<String> onCancel = new ConsumerProperty<>(s -> setText(getConverterSupplier().get().toString(getValue())));
 
-	private final ObjectProperty<Locale> locale = new SimpleObjectProperty<>(Locale.getDefault()) {
+	private final ObjectProperty<Locale> locale = new SimpleObjectProperty<Locale>(Locale.getDefault()) {
 		@Override
 		public void set(Locale newValue) {
 			if (newValue == null) {
@@ -117,7 +117,7 @@ public class MFXDatePicker extends MFXTextField {
 		}
 	};
 	private final ReadOnlyObjectWrapper<LocalDate> currentDate = new ReadOnlyObjectWrapper<>(LocalDate.now());
-	private final NumberRangeProperty<Integer> yearsRange = new NumberRangeProperty<>(NumberRange.of(1900, 2100)) {
+	private final NumberRangeProperty<Integer> yearsRange = new NumberRangeProperty<Integer>(NumberRange.of(1900, 2100)) {
 		@Override
 		public void set(NumberRange<Integer> newValue) {
 			if (newValue == null) {
@@ -127,7 +127,7 @@ public class MFXDatePicker extends MFXTextField {
 			super.set(newValue);
 		}
 	};
-	private final BiFunctionProperty<Locale, YearMonth, Integer[][]> gridAlgorithm = new BiFunctionProperty<>(DateTimeUtils::fullIntMonthMatrix) {
+	private final BiFunctionProperty<Locale, YearMonth, Integer[][]> gridAlgorithm = new BiFunctionProperty<Locale, YearMonth, Integer[][]>(DateTimeUtils::fullIntMonthMatrix) {
 		@Override
 		public void set(BiFunction<Locale, YearMonth, Integer[][]> newValue) {
 			if (newValue == null) {

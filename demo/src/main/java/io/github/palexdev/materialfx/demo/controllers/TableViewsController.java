@@ -65,7 +65,7 @@ public class TableViewsController implements Initializable {
 
 		nameColumn.setRowCellFactory(person -> new MFXTableRowCell<>(Person::getName));
 		surnameColumn.setRowCellFactory(person -> new MFXTableRowCell<>(Person::getSurname));
-		ageColumn.setRowCellFactory(person -> new MFXTableRowCell<>(Person::getAge) {{
+		ageColumn.setRowCellFactory(person -> new MFXTableRowCell<Person, Integer>(Person::getAge) {{
 			setAlignment(Pos.CENTER_RIGHT);
 		}});
 		ageColumn.setAlignment(Pos.CENTER_RIGHT);
@@ -88,7 +88,7 @@ public class TableViewsController implements Initializable {
 
 		idColumn.setRowCellFactory(device -> new MFXTableRowCell<>(Device::getID));
 		nameColumn.setRowCellFactory(device -> new MFXTableRowCell<>(Device::getName));
-		ipColumn.setRowCellFactory(device -> new MFXTableRowCell<>(Device::getIP) {{
+		ipColumn.setRowCellFactory(device -> new MFXTableRowCell<Device, String>(Device::getIP) {{
 			setAlignment(Pos.CENTER_RIGHT);
 		}});
 		ownerColumn.setRowCellFactory(device -> new MFXTableRowCell<>(Device::getOwner));

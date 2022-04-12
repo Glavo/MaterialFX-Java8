@@ -54,7 +54,7 @@ public class StringFilter<T> extends AbstractFilter<T, String> {
 	// Constructors
 	//================================================================================
 	public StringFilter(String name, Function<T, String> extractor) {
-		this(name, extractor, new StringConverter<>() {
+		this(name, extractor, new StringConverter<String>() {
 			@Override
 			public String toString(String object) {
 				return object;

@@ -74,7 +74,7 @@ public class MFXLoader {
 	// Properties
 	//================================================================================
 	private final Map<String, MFXLoaderBean> viewMap = new LinkedHashMap<>();
-	private final SupplierProperty<FXMLLoader> fxmlLoaderSupplier = new SupplierProperty<>(FXMLLoader::new) {
+	private final SupplierProperty<FXMLLoader> fxmlLoaderSupplier = new SupplierProperty<FXMLLoader>(FXMLLoader::new) {
 		@Override
 		public void set(Supplier<FXMLLoader> newValue) {
 			if (newValue == null) {

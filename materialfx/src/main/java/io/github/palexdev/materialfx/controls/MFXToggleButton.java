@@ -64,7 +64,7 @@ public class MFXToggleButton extends Labeled implements Toggle, MFXLabeled {
 	private final BooleanProperty selected = new SimpleBooleanProperty(false);
 	protected static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
 
-	private final EventHandlerProperty<ActionEvent> onAction = new EventHandlerProperty<>() {
+	private final EventHandlerProperty<ActionEvent> onAction = new EventHandlerProperty<ActionEvent>() {
 		@Override
 		protected void invalidated() {
 			setEventHandler(ActionEvent.ACTION, get());

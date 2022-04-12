@@ -29,6 +29,10 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.effect.Effect;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
+
 public class NodeBuilder<N extends Node> implements INodeBuilder<N> {
 	//================================================================================
 	// Properties
@@ -139,8 +143,31 @@ public class NodeBuilder<N extends Node> implements INodeBuilder<N> {
 		return this;
 	}
 
+	private static MethodHandle setViewOrderHandle;
+
+	static {
+		MethodHandle handle = null;
+		try {
+			handle = MethodHandles.publicLookup()
+					.findVirtual(Node.class, "setViewOrder", MethodType.methodType(void.class, double.class));
+		} catch (Throwable ignored) {
+		}
+
+		setViewOrderHandle = handle;
+	}
+
 	public NodeBuilder<N> setViewOrder(double viewOrder) {
-		node.setViewOrder(viewOrder);
+		if (setViewOrderHandle == null) {
+			throw new UnsupportedOperationException("Node::setViewOrder requires OpenJFX 9+");
+		}
+
+		try {
+			setViewOrderHandle.invoke(node, viewOrder);
+		} catch (RuntimeException | Error e) {
+			throw e;
+		} catch (Throwable e) {
+			throw new RuntimeException(e);
+		}
 		return this;
 	}
 

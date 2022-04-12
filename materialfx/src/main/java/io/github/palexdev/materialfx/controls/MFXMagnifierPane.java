@@ -92,17 +92,17 @@ public class MFXMagnifierPane extends Control {
 	private final String STYLE_CLASS = "mfx-magnifier";
 	private final String STYLESHEET = MFXResourcesLoader.load("css/MFXMagnifier.css");
 
-	private final ObjectProperty<Node> content = new SimpleObjectProperty<>();
-	private final ObjectProperty<PositionBean> position = new SimpleObjectProperty<>();
+	private final ObjectProperty<Node> content = new SimpleObjectProperty<Node>();
+	private final ObjectProperty<PositionBean> position = new SimpleObjectProperty<PositionBean>();
 
-	private final ObjectProperty<Image> magnifierView = new SimpleObjectProperty<>() {
+	private final ObjectProperty<Image> magnifierView = new SimpleObjectProperty<Image>() {
 		@Override
 		public void unbind() {
 		}
 	};
 
-	private final ReadOnlyObjectWrapper<Color> pickedColor = new ReadOnlyObjectWrapper<>();
-	private final ObjectProperty<StringConverter<Color>> colorConverter = new SimpleObjectProperty<>(FunctionalStringConverter.to(ColorUtils::rgb));
+	private final ReadOnlyObjectWrapper<Color> pickedColor = new ReadOnlyObjectWrapper<Color>();
+	private final ObjectProperty<StringConverter<Color>> colorConverter = new SimpleObjectProperty<StringConverter<Color>>(FunctionalStringConverter.to(ColorUtils::rgb));
 
 	//================================================================================
 	// Constructors
@@ -191,7 +191,7 @@ public class MFXMagnifierPane extends Control {
 			8.0
 	);
 
-	private final StyleableObjectProperty<VPos> pickerPos = new StyleableObjectProperty<>(
+	private final StyleableObjectProperty<VPos> pickerPos = new StyleableObjectProperty<VPos>(
 			StyleableProperties.PICKER_POS,
 			this,
 			"pickerPos",
@@ -391,7 +391,7 @@ public class MFXMagnifierPane extends Control {
 	// CSSMetaData
 	//================================================================================
 	private static class StyleableProperties {
-		private static final StyleablePropertyFactory<MFXMagnifierPane> FACTORY = new StyleablePropertyFactory<>(Control.getClassCssMetaData());
+		private static final StyleablePropertyFactory<MFXMagnifierPane> FACTORY = new StyleablePropertyFactory<MFXMagnifierPane>(Control.getClassCssMetaData());
 		private static final List<CssMetaData<? extends Styleable, ?>> cssMetaDataList;
 
 		private static final CssMetaData<MFXMagnifierPane, Number> LENS_SIZE =

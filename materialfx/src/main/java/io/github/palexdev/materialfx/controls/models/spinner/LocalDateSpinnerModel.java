@@ -43,6 +43,9 @@ import java.time.temporal.TemporalAmount;
  * <p> - The initial value depends on the chosen constructor
  */
 public class LocalDateSpinnerModel extends AbstractSpinnerModel<LocalDate> {
+
+	private static final LocalDate EPOCH = LocalDate.of(1970, 1, 1);
+
 	//================================================================================
 	// Properties
 	//================================================================================
@@ -55,13 +58,13 @@ public class LocalDateSpinnerModel extends AbstractSpinnerModel<LocalDate> {
 	// Constructors
 	//================================================================================
 	public LocalDateSpinnerModel() {
-		this(LocalDate.EPOCH);
+		this(EPOCH);
 	}
 
 	public LocalDateSpinnerModel(LocalDate initialValue) {
 		setConverter(new DateStringConverter(FormatStyle.MEDIUM));
-		setDefaultValue(LocalDate.EPOCH);
-		setMin(LocalDate.EPOCH);
+		setDefaultValue(EPOCH);
+		setMin(EPOCH);
 		setMax(LocalDate.MAX);
 		setIncrement(Duration.ofDays(1));
 		setValue(initialValue);

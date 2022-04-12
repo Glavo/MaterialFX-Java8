@@ -70,8 +70,8 @@ public class MFXRadioButtonSkin extends MFXLabeledSkinBase<MFXRadioButton> {
 		rippleGenerator.setClipSupplier(() -> null);
 		rippleGenerator.setRipplePositionFunction(event -> {
 			PositionBean position = new PositionBean();
-			position.setX(radio.getBoundsInParent().getCenterX());
-			position.setY(radio.getBoundsInParent().getCenterY());
+			position.setX((radio.getBoundsInParent().getMaxX() + radio.getBoundsInParent().getMinX()) * 0.5); // position.setX(radio.getBoundsInParent().getCenterX());
+			position.setY((radio.getBoundsInParent().getMaxY() + radio.getBoundsInParent().getMinY()) * 0.5); // position.setY(radio.getBoundsInParent().getCenterY());
 			return position;
 		});
 		radioContainer.getChildren().add(0, rippleGenerator);

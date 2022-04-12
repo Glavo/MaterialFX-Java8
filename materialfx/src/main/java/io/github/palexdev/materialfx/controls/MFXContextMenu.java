@@ -62,7 +62,7 @@ import java.util.function.Function;
  * <p></p>
  * It is highly suggested using the {@link Builder} class to create a context menu.
  * <p></p>
- * <b>NOTE</b> that since the content of the context menu is entirely determined by its skin, the {@link #contentProperty()}
+ * <b>NOTE</b> that since the content of the context menu is entirely determined by its skin, the {@link #contentNodeProperty()}
  * will always be null. As a result methods involving {@link Alignment}, {@link HPos} or {@link VPos} will fail with a
  * NullPointerException.
  */

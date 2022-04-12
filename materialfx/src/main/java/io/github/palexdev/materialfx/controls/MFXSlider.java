@@ -143,7 +143,7 @@ public class MFXSlider extends Control {
 			super.set(NumberUtils.formatTo(clamped, getDecimalPrecision()));
 		}
 	};
-	private final SupplierProperty<Node> thumbSupplier = new SupplierProperty<>() {
+	private final SupplierProperty<Node> thumbSupplier = new SupplierProperty<Node>() {
 		@Override
 		public void set(Supplier<Node> newValue) {
 			Node node = newValue.get();

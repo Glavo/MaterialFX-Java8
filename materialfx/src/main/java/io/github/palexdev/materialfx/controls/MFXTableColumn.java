@@ -73,7 +73,7 @@ public class MFXTableColumn<T> extends Labeled {
 	private final String STYLE_CLASS = "mfx-table-column";
 	private final String STYLESHEET = MFXResourcesLoader.load("css/MFXTableView.css");
 
-	private final FunctionProperty<T, MFXTableRowCell<T, ?>> rowCellFactory = new FunctionProperty<>() {
+	private final FunctionProperty<T, MFXTableRowCell<T, ?>> rowCellFactory = new FunctionProperty<T, MFXTableRowCell<T, ?>>() {
 		@Override
 		public void set(Function<T, MFXTableRowCell<T, ?>> newValue) {
 			super.set(newValue.andThen(cell -> {
@@ -85,7 +85,7 @@ public class MFXTableColumn<T> extends Labeled {
 		}
 	};
 
-	private final ObjectProperty<SortState> sortState = new SimpleObjectProperty<>(SortState.UNSORTED) {
+	private final ObjectProperty<SortState> sortState = new SimpleObjectProperty<SortState>(SortState.UNSORTED) {
 		@Override
 		public void set(SortState newValue) {
 			if (getComparator() == null) {
@@ -103,7 +103,7 @@ public class MFXTableColumn<T> extends Labeled {
 		}
 	};
 
-	private final ComparatorProperty<T> comparator = new ComparatorProperty<>() {
+	private final ComparatorProperty<T> comparator = new ComparatorProperty<T>() {
 		@Override
 		protected void invalidated() {
 			SortState sortState = getSortState();

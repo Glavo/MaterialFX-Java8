@@ -592,7 +592,7 @@ public class SimpleVirtualFlow<T, C extends Cell<T>> extends Region implements V
     /**
      * Builder class to create {@link SimpleVirtualFlow}s.
      */
-    @Deprecated(forRemoval = true)
+    @Deprecated
     public static class Builder {
 
         private Builder() {

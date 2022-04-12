@@ -150,7 +150,7 @@ public class MFXStepperToggleSkin extends SkinBase<MFXStepperToggle> {
 
 		double lw = SnapUtils.snapSizeX((Region) getNode(), label.prefWidth(-1));
 		double lh = SnapUtils.snapSizeY((Region) getNode(), label.prefHeight(-1));
-		double lx = SnapUtils.snapPositionX((Region) getNode(), circle.getBoundsInParent().getCenterX() - (lw / 2.0));
+		double lx = SnapUtils.snapPositionX((Region) getNode(), ((circle.getBoundsInParent().getMaxX() + circle.getBoundsInParent().getMinX()) * 0.5) - (lw / 2.0));
 		double ly = 0;
 
 		if (stepperToggle.getTextPosition() == TextPosition.BOTTOM) {

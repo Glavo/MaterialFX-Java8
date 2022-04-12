@@ -105,7 +105,7 @@ public class MFXFontIcon extends Text {
 	//================================================================================
 	// Styleable Properties
 	//================================================================================
-	private final StyleableObjectProperty<Color> color = new SimpleStyleableObjectProperty<>(
+	private final StyleableObjectProperty<Color> color = new SimpleStyleableObjectProperty<Color>(
 			StyleableProperties.COLOR,
 			this,
 			"color",

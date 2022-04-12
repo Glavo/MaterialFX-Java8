@@ -50,7 +50,7 @@ public class MFXFilterComboBoxSkin<T> extends MFXComboBoxSkin<T> {
 	//================================================================================
 	public MFXFilterComboBoxSkin(MFXFilterComboBox<T> comboBox, BoundTextField boundField) {
 		super(comboBox, boundField);
-		popup.setContent(createPopupContent());
+		popup.setContentNode(createPopupContent());
 		addListeners();
 	}
 

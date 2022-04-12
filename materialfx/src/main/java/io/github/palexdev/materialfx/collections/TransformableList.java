@@ -82,14 +82,14 @@ public class TransformableList<T> extends TransformationList<T, T> {
 	private final List<Integer> indexes = new ArrayList<>();
 	private boolean reversed = false;
 
-	private final PredicateProperty<T> predicate = new PredicateProperty<>() {
+	private final PredicateProperty<T> predicate = new PredicateProperty<T>() {
 		@Override
 		protected void invalidated() {
 			update();
 		}
 	};
 
-	private final ComparatorProperty<T> comparator = new ComparatorProperty<>() {
+	private final ComparatorProperty<T> comparator = new ComparatorProperty<T>() {
 		@Override
 		protected void invalidated() {
 			update();

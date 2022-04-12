@@ -304,7 +304,7 @@ public class MFXMagnifierPaneSkin extends SkinBase<MFXMagnifierPane> {
 		//================================================================================
 		private final String STYLE_CLASS = "lens";
 
-		private final ObjectProperty<Image> image = new SimpleObjectProperty<>() {
+		private final ObjectProperty<Image> image = new SimpleObjectProperty<Image>() {
 			@Override
 			public void set(Image newValue) {
 				super.set(newValue != null ? postProcess(newValue) : null);

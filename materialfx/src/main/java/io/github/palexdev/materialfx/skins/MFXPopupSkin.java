@@ -55,7 +55,7 @@ public class MFXPopupSkin implements Skin<MFXPopup> {
 		this.popup = popup;
 
 		scale = new Scale(0.1, 0.1, 0, 0);
-		container = new StackPane(popup.getContent()) {
+		container = new StackPane(popup.getContentNode()) {
 			@Override
 			public String getUserAgentStylesheet() {
 				return popup.getUserAgentStylesheet();

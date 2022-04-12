@@ -72,7 +72,7 @@ public class MFXRadioButton extends RadioButton implements MFXLabeled {
 	//================================================================================
 	// Styleable Properties
 	//================================================================================
-	private final StyleableObjectProperty<ContentDisplay> contentDisposition = new SimpleStyleableObjectProperty<>(
+	private final StyleableObjectProperty<ContentDisplay> contentDisposition = new SimpleStyleableObjectProperty<ContentDisplay>(
 			StyleableProperties.CONTENT_DISPOSITION,
 			this,
 			"contentDisposition",

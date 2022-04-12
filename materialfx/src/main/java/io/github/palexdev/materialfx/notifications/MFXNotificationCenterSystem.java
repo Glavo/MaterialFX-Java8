@@ -68,7 +68,7 @@ public class MFXNotificationCenterSystem extends AbstractMFXNotificationSystem {
 	private MFXNotificationCenterSystem() {
 		super();
 		center = new MFXNotificationCenter();
-		popup.setContent(center);
+		popup.setContentNode(center);
 	}
 
 	//================================================================================

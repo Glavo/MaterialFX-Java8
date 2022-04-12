@@ -68,7 +68,7 @@ public class MFXTooltipSkin implements Skin<MFXTooltip> {
 		};
 		container.getStyleClass().add("container");
 		container.getTransforms().addAll(scale);
-		tooltip.setContent(container);
+		tooltip.setContentNode(container);
 
 		initHandler = event -> {
 			init();

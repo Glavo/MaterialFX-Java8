@@ -84,7 +84,7 @@ public class MFXTableView<T> extends Control {
 
 	public MFXTableView(ObservableList<T> items) {
 		setItems(items);
-		rowsFlow = new SimpleVirtualFlow<>(
+		rowsFlow = new SimpleVirtualFlow<T, MFXTableRow<T>>(
 				transformableList,
 				getTableRowFactory(),
 				Orientation.VERTICAL

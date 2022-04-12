@@ -1,4 +1,12 @@
-import java.io.RandomAccessFile
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+
+    dependencies {
+        classpath("org.glavo:module-info-compiler:1.2")
+    }
+}
 
 plugins {
     application
@@ -22,12 +30,14 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 
     implementation("scenicview:scenicview")
-    implementation("fr.brouillard.oss:cssfx:11.5.1")
+    implementation("org.fxmisc.cssfx:cssfx:1.1.1")
     implementation("org.kordamp.ikonli:ikonli-core:12.2.0")
     implementation("org.kordamp.ikonli:ikonli-javafx:12.2.0")
     implementation("org.kordamp.ikonli:ikonli-fontawesome5-pack:12.2.0")
     implementation(project(":VirtualizedFX"))
     implementation(project(":materialfx"))
+
+    compileOnly("javafx:jfx8")
 }
 
 application {
@@ -40,20 +50,19 @@ application {
     }
 }
 
+val compileModuleInfo = tasks.create<org.glavo.mic.tasks.CompileModuleInfo>("compileModuleInfo") {
+    sourceFile.set(file("src/main/module-info.java"))
+    targetFile.set(buildDir.resolve("classes/java/main/module-info/module-info.class"))
+}
+
 tasks.compileJava {
-    options.release.set(9)
-    doLast {
-        val tree = fileTree(destinationDirectory)
-        tree.include("**/*.class")
-        tree.exclude("module-info.class")
-        tree.forEach {
-            RandomAccessFile(it, "rw").use { rf ->
-                rf.seek(7)   // major version
-                rf.write(52)   // java 8
-                rf.close()
-            }
-        }
-    }
+    options.release.set(8)
+}
+
+tasks.jar {
+    dependsOn(compileModuleInfo)
+
+    from(compileModuleInfo.targetFile)
 }
 
 tasks.shadowJar {
@@ -66,15 +75,6 @@ tasks.shadowJar {
     }
 }
 
-tasks.compileTestJava {
-    extensions.configure<org.javamodularity.moduleplugin.extensions.CompileTestModuleOptions> {
-        isCompileOnClasspath = true
-    }
-}
-
 tasks.test {
     useJUnitPlatform()
-    extensions.configure<org.javamodularity.moduleplugin.extensions.TestModuleOptions> {
-        runOnClasspath = true
-    }
 }

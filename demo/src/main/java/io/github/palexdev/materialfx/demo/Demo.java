@@ -18,7 +18,6 @@
 
 package io.github.palexdev.materialfx.demo;
 
-import fr.brouillard.oss.cssfx.CSSFX;
 import io.github.palexdev.materialfx.demo.controllers.DemoController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.fxmisc.cssfx.CSSFX;
 
 public class Demo extends Application {
 

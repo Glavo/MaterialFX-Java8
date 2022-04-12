@@ -117,7 +117,7 @@ public class MFXLegacyListViewSkin<T> extends ListViewSkin<T> {
 				hideBars.setDelay(listView.getHideAfter());
 
 				if (hBar.isPressed()) {
-					hBar.pressedProperty().addListener(new ChangeListener<>() {
+					hBar.pressedProperty().addListener(new ChangeListener<Boolean>() {
 						@Override
 						public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 							if (!newValue) {
@@ -130,7 +130,7 @@ public class MFXLegacyListViewSkin<T> extends ListViewSkin<T> {
 				}
 
 				if (vBar.isPressed()) {
-					vBar.pressedProperty().addListener(new ChangeListener<>() {
+					vBar.pressedProperty().addListener(new ChangeListener<Boolean>() {
 						@Override
 						public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 							if (!newValue) {

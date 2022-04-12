@@ -79,7 +79,7 @@ public class MFXPopup extends PopupControl implements MFXStyleablePopup {
 	private static final WeakHashMap<MFXPopup, Boolean> configMap = new WeakHashMap<>();
 
 	private PopupPositionBean position;
-	private final ObjectProperty<Node> content = new SimpleObjectProperty<>() {
+	private final ObjectProperty<Node> contentNode = new SimpleObjectProperty<Node>() {
 		@Override
 		public void set(Node newValue) {
 			Node oldValue = get();
@@ -119,7 +119,7 @@ public class MFXPopup extends PopupControl implements MFXStyleablePopup {
 	}
 
 	public MFXPopup(Node content) {
-		setContent(content);
+		setContentNode(content);
 		animationProvider = (node, scale) -> TimelineBuilder.build()
 				.show(150, node)
 				.add(KeyFrames.of(150,
@@ -210,8 +210,8 @@ public class MFXPopup extends PopupControl implements MFXStyleablePopup {
 		double y = position.getY();
 
 		if (isFixPosition(this)) {
-			double contentWith = getContent().prefWidth(-1);
-			double contentHeight = getContent().prefHeight(-1);
+			double contentWith = getContentNode().prefWidth(-1);
+			double contentHeight = getContentNode().prefHeight(-1);
 			double endX = x + contentWith;
 			double endY = y + contentHeight;
 
@@ -269,7 +269,7 @@ public class MFXPopup extends PopupControl implements MFXStyleablePopup {
 	 */
 	private double computeHPos(Node node, HPos hPos, double xOffset) {
 		double x;
-		double contentWidth = getContent().prefWidth(-1);
+		double contentWidth = getContentNode().prefWidth(-1);
 		double ownerWidth = node.getLayoutBounds().getWidth();
 		switch (hPos) {
 			case LEFT:
@@ -376,8 +376,8 @@ public class MFXPopup extends PopupControl implements MFXStyleablePopup {
 		return position;
 	}
 
-	public Node getContent() {
-		return content.get();
+	public Node getContentNode() {
+		return contentNode.get();
 	}
 
 	/**
@@ -394,12 +394,12 @@ public class MFXPopup extends PopupControl implements MFXStyleablePopup {
 	 * <p></p>
 	 * The content <b>cannot</b> be null.
 	 */
-	public ObjectProperty<Node> contentProperty() {
-		return content;
+	public ObjectProperty<Node> contentNodeProperty() {
+		return contentNode;
 	}
 
-	public void setContent(Node content) {
-		this.content.set(content);
+	public void setContentNode(Node content) {
+		this.contentNode.set(content);
 	}
 
 	/**

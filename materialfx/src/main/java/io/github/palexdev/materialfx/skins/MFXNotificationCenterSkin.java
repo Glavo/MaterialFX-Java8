@@ -185,8 +185,8 @@ public class MFXNotificationCenterSkin extends SkinBase<MFXNotificationCenter> {
 		super.layoutChildren(contentX, contentY, contentWidth, contentHeight);
 
 		// That one time I really need math, I don't understand how it works, but it works :)
-		double bellCenterX = bellWrapped.getBoundsInParent().getCenterX();
-		double bellCenterY = bellWrapped.getBoundsInParent().getCenterY();
+		double bellCenterX = (bellWrapped.getBoundsInParent().getMaxX() + bellWrapped.getBoundsInParent().getMinX()) * 0.5; // bellWrapped.getBoundsInParent().getCenterX();
+		double bellCenterY = (bellWrapped.getBoundsInParent().getMaxY() + bellWrapped.getBoundsInParent().getMinY()) * 0.5; // bellWrapped.getBoundsInParent().getCenterY();
 		double radius = bellWrapped.getSize() / 2;
 		double angle = 45;
 		double angleToRadians = Math.PI / 180;

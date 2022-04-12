@@ -92,7 +92,7 @@ public class PopupBuilder {
 	}
 
 	public PopupBuilder setContent(Node content) {
-		popup.setContent(content);
+		popup.setContentNode(content);
 		return this;
 	}
 

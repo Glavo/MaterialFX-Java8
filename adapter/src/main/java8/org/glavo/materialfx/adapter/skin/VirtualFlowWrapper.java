@@ -14,4 +14,12 @@ public class VirtualFlowWrapper<T extends IndexedCell<?>> {
     public Region getVirtualFlow() {
         return flow;
     }
+
+    public int getCellCount() {
+        return flow.getCellCount();
+    }
+
+    public T getCell(int idx) {
+        return flow.getCell(idx);
+    }
 }

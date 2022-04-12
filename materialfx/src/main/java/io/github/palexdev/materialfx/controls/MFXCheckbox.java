@@ -70,7 +70,7 @@ public class MFXCheckbox extends CheckBox implements MFXLabeled {
 	//================================================================================
 	// Stylesheet properties
 	//================================================================================
-	private final StyleableObjectProperty<ContentDisplay> contentDisposition = new SimpleStyleableObjectProperty<>(
+	private final StyleableObjectProperty<ContentDisplay> contentDisposition = new SimpleStyleableObjectProperty<ContentDisplay>(
 			StyleableProperties.CONTENT_DISPOSITION,
 			this,
 			"contentDisposition",

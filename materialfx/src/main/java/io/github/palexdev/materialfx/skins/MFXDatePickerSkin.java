@@ -128,7 +128,7 @@ public class MFXDatePickerSkin extends MFXTextFieldSkin {
 	// Methods
 	//================================================================================
 	protected void initialize() {
-		popup.setContent(createPopupContent());
+		popup.setContentNode(createPopupContent());
 	}
 
 	protected void setBehavior() {

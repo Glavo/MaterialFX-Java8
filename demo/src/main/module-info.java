@@ -9,7 +9,7 @@ module MaterialFX.Demo {
 	requires javafx.graphics;
 	requires javafx.media;
 
-	requires fr.brouillard.oss.cssfx;
+	requires cssfx;
 	requires org.kordamp.ikonli.javafx;
 	requires org.kordamp.ikonli.fontawesome5;
 	requires org.scenicview.scenicview;

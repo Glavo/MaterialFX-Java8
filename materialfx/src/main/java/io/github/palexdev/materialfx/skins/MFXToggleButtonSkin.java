@@ -29,6 +29,7 @@ import io.github.palexdev.materialfx.utils.AnimationUtils.KeyFrames;
 import io.github.palexdev.materialfx.utils.AnimationUtils.TimelineBuilder;
 import io.github.palexdev.materialfx.utils.NodeUtils;
 import javafx.beans.binding.Bindings;
+import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
@@ -82,11 +83,19 @@ public class MFXToggleButtonSkin extends MFXLabeledSkinBase<MFXToggleButton> {
 		rippleGenerator.setRipplePositionFunction(event -> {
 			PositionBean position = new PositionBean();
 			position.xProperty().bind(Bindings.createDoubleBinding(
-					() -> circle.localToParent(circle.getLayoutBounds()).getCenterX(),
+					() -> {
+						// circle.localToParent(circle.getLayoutBounds()).getCenterX()
+						Bounds bounds = circle.localToParent(circle.getLayoutBounds());
+						return (bounds.getMaxX() + bounds.getMinX()) * 0.5;
+					},
 					circle.translateXProperty()
 			));
 			position.yProperty().bind(Bindings.createDoubleBinding(
-					() -> circle.localToParent(circle.getLayoutBounds()).getCenterY(),
+					() -> {
+						// circle.localToParent(circle.getLayoutBounds()).getCenterY()
+						Bounds bounds = circle.localToParent(circle.getLayoutBounds());
+						return (bounds.getMaxY() + bounds.getMinY()) * 0.5;
+					},
 					circle.layoutBoundsProperty()
 			));
 			return position;

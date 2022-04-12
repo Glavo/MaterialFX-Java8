@@ -38,7 +38,7 @@ public interface FunctionalStringConverter<T> {
 	 * to convert a String to an object of type T
 	 */
 	static <T> StringConverter<T> converter(Function<String, T> fsFunction) {
-		return new StringConverter<>() {
+		return new StringConverter<T>() {
 			@Override
 			public String toString(T t) {
 				throw new UnsupportedOperationException();
@@ -56,7 +56,7 @@ public interface FunctionalStringConverter<T> {
 	 * to convert a String to an object of type T and vice versa.
 	 */
 	static <T> StringConverter<T> converter(Function<String, T> fsFunction, Function<T, String> tsFunction) {
-		return new StringConverter<>() {
+		return new StringConverter<T>() {
 			@Override
 			public String toString(T t) {
 				return t != null ? tsFunction.apply(t) : "";
@@ -75,7 +75,7 @@ public interface FunctionalStringConverter<T> {
 	 * @throws UnsupportedOperationException when using the toString(T) method
 	 */
 	static <T> StringConverter<T> from(Function<String, T> fsFunction) {
-		return new StringConverter<>() {
+		return new StringConverter<T>() {
 			@Override
 			public String toString(T t) {
 				throw new UnsupportedOperationException();
@@ -94,7 +94,7 @@ public interface FunctionalStringConverter<T> {
 	 * @throws UnsupportedOperationException when using the fromString(String) method
 	 */
 	static <T> StringConverter<T> to(Function<T, String> tsFunction) {
-		return new StringConverter<>() {
+		return new StringConverter<T>() {
 			@Override
 			public String toString(T t) {
 				return tsFunction.apply(t);

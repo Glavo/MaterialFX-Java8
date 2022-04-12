@@ -24,7 +24,6 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.skin.VirtualFlow;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import org.glavo.materialfx.adapter.skin.TableViewSkin;

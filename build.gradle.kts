@@ -1,9 +1,7 @@
-import org.openjfx.gradle.JavaFXOptions
 import java.util.Properties
 
 plugins {
     `java-library`
-    id("org.openjfx.javafxplugin") version "0.0.12" apply false
     id("org.javamodularity.moduleplugin") version "1.8.10" apply false
     `maven-publish`
     signing
@@ -15,20 +13,19 @@ version = "11.13.4"
 
 loadMavenPublishProperties()
 
-repositories {
-    mavenCentral()
+allprojects {
+    repositories {
+        flatDir {
+            dirs("${project(":adapter").projectDir}/libs")
+        }
+
+        mavenCentral()
+    }
+
 }
 
+
 subprojects {
-    apply {
-        plugin("org.openjfx.javafxplugin")
-    }
-
-    configure<JavaFXOptions> {
-        version = "18"
-        modules = listOf("javafx.controls", "javafx.fxml", "javafx.media", "javafx.swing", "javafx.web")
-    }
-
     if (project.hasProperty("POM_ARTIFACT_ID")) {
         apply {
             plugin("maven-publish")

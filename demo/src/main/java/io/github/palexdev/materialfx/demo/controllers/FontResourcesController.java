@@ -54,7 +54,7 @@ public class FontResourcesController implements Initializable {
 		MFXTableColumn<FontResources> descriptionColumn = new MFXTableColumn<>("Description", false, Comparator.comparing(FontResources::getDescription));
 		MFXTableColumn<FontResources> codeColumn = new MFXTableColumn<>("Code", false, Comparator.comparing(FontResources::getCode));
 
-		iconColumn.setRowCellFactory(resource -> new MFXTableRowCell<>(FontResources::getDescription) {
+		iconColumn.setRowCellFactory(resource -> new MFXTableRowCell<FontResources, String>(FontResources::getDescription) {
 			final MFXFontIcon icon = new MFXFontIcon("mfx-logo", 32);
 
 			@Override
@@ -63,7 +63,7 @@ public class FontResourcesController implements Initializable {
 				setGraphic(icon);
 			}
 		});
-		descriptionColumn.setRowCellFactory(resource -> new MFXTableRowCell<>(FontResources::getDescription) {
+		descriptionColumn.setRowCellFactory(resource -> new MFXTableRowCell<FontResources, String>(FontResources::getDescription) {
 			@Override
 			public double computePrefWidth(double height) {
 				return 300;
@@ -71,7 +71,7 @@ public class FontResourcesController implements Initializable {
 		});
 		codeColumn.setRowCellFactory(resource -> new MFXTableRowCell<>(FontResources::getCode, character -> Integer.toHexString(character | 0x10000).substring(1).toUpperCase()));
 
-		tableView.setTableRowFactory(resource -> new MFXTableRow<>(tableView, resource) {{
+		tableView.setTableRowFactory(resource -> new MFXTableRow<FontResources>(tableView, resource) {{
 			setPrefHeight(48);
 		}});
 		tableView.getTableColumns().addAll(iconColumn, descriptionColumn, codeColumn);

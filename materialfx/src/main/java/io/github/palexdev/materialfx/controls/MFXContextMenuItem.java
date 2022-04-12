@@ -62,7 +62,7 @@ public class MFXContextMenuItem extends Labeled {
 
 	private final StringProperty accelerator = new SimpleStringProperty();
 	private final SupplierProperty<Tooltip> tooltipSupplier = new SupplierProperty<>();
-	private final EventHandlerProperty<ActionEvent> onAction = new EventHandlerProperty<>() {
+	private final EventHandlerProperty<ActionEvent> onAction = new EventHandlerProperty<ActionEvent>() {
 		@Override
 		protected void invalidated() {
 			setEventHandler(ActionEvent.ACTION, get());

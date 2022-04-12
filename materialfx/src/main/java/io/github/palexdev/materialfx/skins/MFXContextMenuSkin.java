@@ -45,7 +45,7 @@ import javafx.stage.WindowEvent;
  * VBox containing all the items specified by {@link MFXContextMenu#getItems()}, this box is set as the content
  * of the scroll pane.
  * <p></p>
- * A little side note on the popup's {@link MFXPopup#contentProperty()}:
+ * A little side note on the popup's {@link MFXPopup#contentNodeProperty()}:
  * <p>
  * {@link MFXContextMenu} is a special case of {@link MFXPopup}. This skin is
  * responsible for setting the popup's content to the aforementioned scroll pane.
@@ -97,7 +97,7 @@ public class MFXContextMenuSkin implements Skin<MFXContextMenu> {
 		scrollPane.setFitToWidth(true);
 		scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		scrollPane.getTransforms().add(scale);
-		contextMenu.setContent(scrollPane);
+		contextMenu.setContentNode(scrollPane);
 
 		initHandler = event -> {
 			init();

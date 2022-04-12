@@ -219,7 +219,7 @@ public abstract class AbstractMFXRippleGenerator<T extends IRipple> extends Regi
 		}
 	}
 
-	public final EventHandlerProperty<RippleGeneratorEvent> onAnimationFinished = new EventHandlerProperty<>() {
+	public final EventHandlerProperty<RippleGeneratorEvent> onAnimationFinished = new EventHandlerProperty<RippleGeneratorEvent>() {
 		@Override
 		protected void invalidated() {
 			setEventHandler(RippleGeneratorEvent.ANIMATION_FINISHED_EVENT, get());

@@ -122,7 +122,7 @@ public class MFXLegacyComboBox<T> extends ComboBox<T> implements Validated {
 	//================================================================================
 	private void initialize() {
 		getStyleClass().add(STYLE_CLASS);
-		setCellFactory(listCell -> new MFXLegacyListCell<>() {
+		setCellFactory(listCell -> new MFXLegacyListCell<T>() {
 			@Override
 			protected void updateItem(T item, boolean empty) {
 				super.updateItem(item, empty);
@@ -131,7 +131,7 @@ public class MFXLegacyComboBox<T> extends ComboBox<T> implements Validated {
 			}
 		});
 
-		setButtonCell(new ListCell<>() {
+		setButtonCell(new ListCell<T>() {
 			{
 				valueProperty().addListener(observable -> {
 					if (getValue() == null) {

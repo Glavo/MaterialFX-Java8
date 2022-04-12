@@ -255,7 +255,7 @@ public class MFXButton extends Button {
 			DepthLevel.LEVEL2
 	);
 
-	private final StyleableObjectProperty<ButtonType> buttonType = new SimpleStyleableObjectProperty<>(
+	private final StyleableObjectProperty<ButtonType> buttonType = new SimpleStyleableObjectProperty<ButtonType>(
 			StyleableProperties.BUTTON_TYPE,
 			this,
 			"buttonType",

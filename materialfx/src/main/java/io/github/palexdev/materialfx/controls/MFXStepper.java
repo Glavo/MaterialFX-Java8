@@ -70,7 +70,7 @@ public class MFXStepper extends Control {
 	//================================================================================
 	// Properties
 	//================================================================================
-	private static final StyleablePropertyFactory<MFXStepper> FACTORY = new StyleablePropertyFactory<>(Control.getClassCssMetaData());
+	private static final StyleablePropertyFactory<MFXStepper> FACTORY = new StyleablePropertyFactory<MFXStepper>(Control.getClassCssMetaData());
 	private final String STYLE_CLASS = "mfx-stepper";
 	private final String STYLESHEET = MFXResourcesLoader.load("css/MFXStepper.css");
 
@@ -78,7 +78,7 @@ public class MFXStepper extends Control {
 	private final DoubleProperty animationDuration = new SimpleDoubleProperty(700.0);
 	private final ReadOnlyDoubleWrapper progress = new ReadOnlyDoubleWrapper();
 	private final ReadOnlyIntegerWrapper currentIndex = new ReadOnlyIntegerWrapper(-1);
-	private final ReadOnlyObjectWrapper<Node> currentContent = new ReadOnlyObjectWrapper<>();
+	private final ReadOnlyObjectWrapper<Node> currentContent = new ReadOnlyObjectWrapper<Node>();
 	private final ReadOnlyBooleanWrapper lastToggle = new ReadOnlyBooleanWrapper(false);
 	private boolean enableContentValidationOnError = true;
 
@@ -86,7 +86,7 @@ public class MFXStepper extends Control {
 	// Constructors
 	//================================================================================
 	public MFXStepper() {
-		this(new ArrayList<>());
+		this(new ArrayList<MFXStepperToggle>());
 	}
 
 	public MFXStepper(List<MFXStepperToggle> stepperToggles) {
@@ -205,7 +205,7 @@ public class MFXStepper extends Control {
 			return;
 		}
 
-		List<MFXValidator> validators = new ArrayList<>();
+		List<MFXValidator> validators = new ArrayList<MFXValidator>();
 		Node currentContent = getCurrentContent();
 		if (currentContent instanceof Validated) {
 			Validated validated = (Validated) currentContent;
@@ -379,21 +379,21 @@ public class MFXStepper extends Control {
 			64.0
 	);
 
-	private final StyleableObjectProperty<Pos> alignment = new SimpleStyleableObjectProperty<>(
+	private final StyleableObjectProperty<Pos> alignment = new SimpleStyleableObjectProperty<Pos>(
 			StyleableProperties.ALIGNMENT,
 			this,
 			"alignment",
 			Pos.CENTER
 	);
 
-	private final StyleableObjectProperty<Paint> baseColor = new SimpleStyleableObjectProperty<>(
+	private final StyleableObjectProperty<Paint> baseColor = new SimpleStyleableObjectProperty<Paint>(
 			StyleableProperties.BASE_COLOR,
 			this,
 			"baseColor",
 			Color.web("#7F0FFF")
 	);
 
-	private final StyleableObjectProperty<Paint> altColor = new SimpleStyleableObjectProperty<>(
+	private final StyleableObjectProperty<Paint> altColor = new SimpleStyleableObjectProperty<Paint>(
 			StyleableProperties.ALT_COLOR,
 			this,
 			"altColor",
@@ -407,14 +407,14 @@ public class MFXStepper extends Control {
 			7.0
 	);
 
-	private final StyleableObjectProperty<Paint> progressBarBackground = new SimpleStyleableObjectProperty<>(
+	private final StyleableObjectProperty<Paint> progressBarBackground = new SimpleStyleableObjectProperty<Paint>(
 			StyleableProperties.PROGRESS_BAR_BACKGROUND,
 			this,
 			"progressBarBackground",
 			Color.web("#F8F8FF")
 	);
 
-	private final StyleableObjectProperty<Paint> progressColor = new SimpleStyleableObjectProperty<>(
+	private final StyleableObjectProperty<Paint> progressColor = new SimpleStyleableObjectProperty<Paint>(
 			StyleableProperties.PROGRESS_COLOR,
 			this,
 			"progressColor",
@@ -710,55 +710,55 @@ public class MFXStepper extends Control {
 	 */
 	public static class MFXStepperEvent extends Event {
 
-		public static final EventType<MFXStepperEvent> FORCE_LAYOUT_UPDATE_EVENT = new EventType<>(ANY, "FORCE_LAYOUT_UPDATE_EVENT");
-		public static final EventType<MFXStepperEvent> BEFORE_NEXT_EVENT = new EventType<>(ANY, "BEFORE_NEXT_EVENT");
-		public static final EventType<MFXStepperEvent> NEXT_EVENT = new EventType<>(ANY, "NEXT_EVENT");
-		public static final EventType<MFXStepperEvent> BEFORE_PREVIOUS_EVENT = new EventType<>(ANY, "BEFORE_PREVIOUS_EVENT");
-		public static final EventType<MFXStepperEvent> PREVIOUS_EVENT = new EventType<>(ANY, "PREVIOUS_EVENT");
-		public static final EventType<MFXStepperEvent> LAST_NEXT_EVENT = new EventType<>(ANY, "LAST_NEXT_EVENT");
-		public static final EventType<MFXStepperEvent> VALIDATION_FAILED_EVENT = new EventType<>(ANY, "VALIDATION_FAILED_EVENT");
+		public static final EventType<MFXStepperEvent> FORCE_LAYOUT_UPDATE_EVENT = new EventType<MFXStepperEvent>(ANY, "FORCE_LAYOUT_UPDATE_EVENT");
+		public static final EventType<MFXStepperEvent> BEFORE_NEXT_EVENT = new EventType<MFXStepperEvent>(ANY, "BEFORE_NEXT_EVENT");
+		public static final EventType<MFXStepperEvent> NEXT_EVENT = new EventType<MFXStepperEvent>(ANY, "NEXT_EVENT");
+		public static final EventType<MFXStepperEvent> BEFORE_PREVIOUS_EVENT = new EventType<MFXStepperEvent>(ANY, "BEFORE_PREVIOUS_EVENT");
+		public static final EventType<MFXStepperEvent> PREVIOUS_EVENT = new EventType<MFXStepperEvent>(ANY, "PREVIOUS_EVENT");
+		public static final EventType<MFXStepperEvent> LAST_NEXT_EVENT = new EventType<MFXStepperEvent>(ANY, "LAST_NEXT_EVENT");
+		public static final EventType<MFXStepperEvent> VALIDATION_FAILED_EVENT = new EventType<MFXStepperEvent>(ANY, "VALIDATION_FAILED_EVENT");
 
 		public MFXStepperEvent(EventType<? extends Event> eventType) {
 			super(eventType);
 		}
 	}
 
-	private final EventHandlerProperty<MFXStepperEvent> onBeforeNext = new EventHandlerProperty<>() {
+	private final EventHandlerProperty<MFXStepperEvent> onBeforeNext = new EventHandlerProperty<MFXStepperEvent>() {
 		@Override
 		protected void invalidated() {
 			setEventHandler(MFXStepperEvent.BEFORE_NEXT_EVENT, get());
 		}
 	};
 
-	private final EventHandlerProperty<MFXStepperEvent> onNext = new EventHandlerProperty<>() {
+	private final EventHandlerProperty<MFXStepperEvent> onNext = new EventHandlerProperty<MFXStepperEvent>() {
 		@Override
 		protected void invalidated() {
 			setEventHandler(MFXStepperEvent.NEXT_EVENT, get());
 		}
 	};
 
-	private final EventHandlerProperty<MFXStepperEvent> onBeforePrevious = new EventHandlerProperty<>() {
+	private final EventHandlerProperty<MFXStepperEvent> onBeforePrevious = new EventHandlerProperty<MFXStepperEvent>() {
 		@Override
 		protected void invalidated() {
 			setEventHandler(MFXStepperEvent.BEFORE_PREVIOUS_EVENT, get());
 		}
 	};
 
-	private final EventHandlerProperty<MFXStepperEvent> onPrevious = new EventHandlerProperty<>() {
+	private final EventHandlerProperty<MFXStepperEvent> onPrevious = new EventHandlerProperty<MFXStepperEvent>() {
 		@Override
 		protected void invalidated() {
 			setEventHandler(MFXStepperEvent.PREVIOUS_EVENT, get());
 		}
 	};
 
-	private final EventHandlerProperty<MFXStepperEvent> onLastNext = new EventHandlerProperty<>() {
+	private final EventHandlerProperty<MFXStepperEvent> onLastNext = new EventHandlerProperty<MFXStepperEvent>() {
 		@Override
 		protected void invalidated() {
 			setEventHandler(MFXStepperEvent.LAST_NEXT_EVENT, get());
 		}
 	};
 
-	private final EventHandlerProperty<MFXStepperEvent> onValidationFailed = new EventHandlerProperty<>() {
+	private final EventHandlerProperty<MFXStepperEvent> onValidationFailed = new EventHandlerProperty<MFXStepperEvent>() {
 		@Override
 		protected void invalidated() {
 			setEventHandler(MFXStepperEvent.VALIDATION_FAILED_EVENT, get());

@@ -154,11 +154,11 @@ public class MFXCircleToggleNodeSkin extends SkinBase<MFXCircleToggleNode> {
 			Circle clip = new Circle();
 			clip.radiusProperty().bind(circle.radiusProperty());
 			clip.centerXProperty().bind(Bindings.createDoubleBinding(
-					() -> circle.getBoundsInParent().getCenterX(),
+					() -> (circle.getBoundsInParent().getMaxX() + circle.getBoundsInParent().getMinX()) * 0.5, // circle.getBoundsInParent().getCenterX(),
 					circle.boundsInParentProperty()
 			));
 			clip.centerYProperty().bind(Bindings.createDoubleBinding(
-					() -> circle.getBoundsInParent().getCenterY(),
+					() -> (circle.getBoundsInParent().getMaxY() + circle.getBoundsInParent().getMinY()) * 0.5,
 					circle.boundsInParentProperty()
 			));
 			return clip;

@@ -47,7 +47,7 @@ public class NodeUtils {
         }
 
         if (control.getSkin() == null || addListenerIfNotNull) {
-            control.skinProperty().addListener(new ChangeListener<>() {
+            control.skinProperty().addListener(new ChangeListener<Skin<?>>() {
                 @Override
                 public void changed(ObservableValue<? extends Skin<?>> observable, Skin<?> oldValue, Skin<?> newValue) {
                     if (newValue != null) {
@@ -81,7 +81,7 @@ public class NodeUtils {
         }
 
         if (node.getScene() == null || addListenerIfNotNull) {
-            node.sceneProperty().addListener(new ChangeListener<>() {
+            node.sceneProperty().addListener(new ChangeListener<Scene>() {
                 @Override
                 public void changed(ObservableValue<? extends Scene> observable, Scene oldValue, Scene newValue) {
                     if (newValue != null) {

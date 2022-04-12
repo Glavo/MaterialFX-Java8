@@ -214,7 +214,7 @@ public class ExecutionUtils {
 		}
 
 		if (!booleanExpression.get() || addListenerIfTrue) {
-			booleanExpression.addListener(new ChangeListener<>() {
+			booleanExpression.addListener(new ChangeListener<Boolean>() {
 				@Override
 				public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 					if (newValue) {
@@ -254,7 +254,7 @@ public class ExecutionUtils {
 		}
 
 		if (!booleanExpression.get() || addListenerIfTrue) {
-			booleanExpression.addListener(new ChangeListener<>() {
+			booleanExpression.addListener(new ChangeListener<Boolean>() {
 				@Override
 				public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 					if (newValue) {

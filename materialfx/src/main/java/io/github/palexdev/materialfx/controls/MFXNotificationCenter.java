@@ -134,7 +134,7 @@ public class MFXNotificationCenter extends Control implements MFXMenuControl {
 	// Constructors
 	//================================================================================
 	public MFXNotificationCenter() {
-		virtualFlow = new SimpleVirtualFlow<>(
+		virtualFlow = new SimpleVirtualFlow<INotification, MFXNotificationCell>(
 				notifications,
 				notification -> new MFXNotificationCell(this, notification),
 				Orientation.VERTICAL

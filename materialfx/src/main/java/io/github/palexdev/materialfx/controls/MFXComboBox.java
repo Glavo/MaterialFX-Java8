@@ -616,25 +616,25 @@ public class MFXComboBox<T> extends MFXTextField implements MFXCombo<T> {
 	public static final EventType<Event> ON_HIDING = new EventType<>(Event.ANY, "ON_HIDING");
 	public static final EventType<Event> ON_HIDDEN = new EventType<>(Event.ANY, "ON_HIDDEN");
 
-	private final EventHandlerProperty<Event> onShowing = new EventHandlerProperty<>() {
+	private final EventHandlerProperty<Event> onShowing = new EventHandlerProperty<Event>() {
 		@Override
 		protected void invalidated() {
 			setEventHandler(ON_SHOWING, get());
 		}
 	};
-	private final EventHandlerProperty<Event> onShown = new EventHandlerProperty<>() {
+	private final EventHandlerProperty<Event> onShown = new EventHandlerProperty<Event>() {
 		@Override
 		protected void invalidated() {
 			setEventHandler(ON_SHOWN, get());
 		}
 	};
-	private final EventHandlerProperty<Event> onHiding = new EventHandlerProperty<>() {
+	private final EventHandlerProperty<Event> onHiding = new EventHandlerProperty<Event>() {
 		@Override
 		protected void invalidated() {
 			setEventHandler(ON_HIDING, get());
 		}
 	};
-	private final EventHandlerProperty<Event> onHidden = new EventHandlerProperty<>() {
+	private final EventHandlerProperty<Event> onHidden = new EventHandlerProperty<Event>() {
 		@Override
 		protected void invalidated() {
 			setEventHandler(ON_HIDDEN, get());

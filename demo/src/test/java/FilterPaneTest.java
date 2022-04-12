@@ -1,4 +1,4 @@
-import fr.brouillard.oss.cssfx.CSSFX;
+import org.fxmisc.cssfx.CSSFX;
 import io.github.palexdev.materialfx.MFXResourcesLoader;
 import io.github.palexdev.materialfx.controls.BoundTextField;
 import io.github.palexdev.materialfx.controls.MFXButton;

@@ -244,7 +244,7 @@ public class MFXFilterPaneSkin<T> extends SkinBase<MFXFilterPane<T>> {
 		searchField.setPromptText(I18N.getOrDefault("filterPane.searchField"));
 		searchField.textProperty().bindBidirectional(query);
 
-		MFXComboBox<Object> enumsCombo = new MFXComboBox<>() {
+		MFXComboBox<Object> enumsCombo = new MFXComboBox<Object>() {
 			@Override
 			public String getUserAgentStylesheet() {
 				return filterPane.getUserAgentStylesheet();
@@ -255,7 +255,7 @@ public class MFXFilterPaneSkin<T> extends SkinBase<MFXFilterPane<T>> {
 		enumsCombo.setManaged(false);
 		enumsCombo.setVisible(false);
 
-		MFXComboBox<Boolean> booleansCombo = new MFXComboBox<>(FXCollections.observableArrayList(true, false)) {
+		MFXComboBox<Boolean> booleansCombo = new MFXComboBox<Boolean>(FXCollections.observableArrayList(true, false)) {
 			@Override
 			public String getUserAgentStylesheet() {
 				return filterPane.getUserAgentStylesheet();
@@ -266,7 +266,7 @@ public class MFXFilterPaneSkin<T> extends SkinBase<MFXFilterPane<T>> {
 		booleansCombo.setManaged(false);
 		booleansCombo.setVisible(false);
 
-		MFXComboBox<BiPredicateBean<?, ?>> predicatesCombo = new MFXComboBox<>(predicates) {
+		MFXComboBox<BiPredicateBean<?, ?>> predicatesCombo = new MFXComboBox<BiPredicateBean<?, ?>>(predicates) {
 			@Override
 			public String getUserAgentStylesheet() {
 				return filterPane.getUserAgentStylesheet();
@@ -275,7 +275,7 @@ public class MFXFilterPaneSkin<T> extends SkinBase<MFXFilterPane<T>> {
 		predicatesCombo.setFloatMode(FloatMode.DISABLED);
 		predicatesCombo.getStyleClass().add("predicates-combo");
 
-		MFXComboBox<AbstractFilter<T, ?>> filterCombo = new MFXComboBox<>(filterPane.getFilters()) {
+		MFXComboBox<AbstractFilter<T, ?>> filterCombo = new MFXComboBox<AbstractFilter<T, ?>>(filterPane.getFilters()) {
 			@Override
 			public String getUserAgentStylesheet() {
 				return filterPane.getUserAgentStylesheet();

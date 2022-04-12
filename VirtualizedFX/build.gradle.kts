@@ -1,8 +1,16 @@
-import java.io.RandomAccessFile
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+
+    dependencies {
+        classpath("org.glavo:module-info-compiler:1.2")
+    }
+}
+
 
 plugins {
     `java-library`
-    id("org.openjfx.javafxplugin")
     id("org.javamodularity.moduleplugin")
 }
 
@@ -17,28 +25,14 @@ repositories {
     }
 }
 
-tasks.compileJava {
-    sourceCompatibility = "9"
-    targetCompatibility = "9"
-
-    modularity.inferModulePath.set(true)
-
-    doLast {
-        val tree = fileTree(destinationDirectory)
-        tree.include("**/*.class")
-        tree.exclude("module-info.class")
-        tree.forEach {
-            RandomAccessFile(it, "rw").use { rf ->
-                rf.seek(7)   // major version
-                rf.write(52)   // java 8
-                rf.close()
-            }
-        }
-    }
+val compileModuleInfo = tasks.create<org.glavo.mic.tasks.CompileModuleInfo>("compileModuleInfo") {
+    sourceFile.set(file("src/main/module-info.java"))
+    targetFile.set(buildDir.resolve("classes/java/main/module-info/module-info.class"))
 }
 
-javafx {
-    configuration = "compileOnly"
+
+tasks.compileJava {
+    options.release.set(8)
 }
 
 configurations {
@@ -46,6 +40,8 @@ configurations {
 }
 
 dependencies {
+    compileOnly("javafx:jfx8")
+
     api(project(":adapter"))
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
@@ -99,8 +95,10 @@ publishing {
     }
 }
 
-
 tasks.jar {
+    dependsOn(compileModuleInfo)
+    from(compileModuleInfo.targetFile)
+
     manifest {
         attributes(
             "Bundle-Name" to project.name,
@@ -111,15 +109,6 @@ tasks.jar {
     }
 }
 
-tasks.compileTestJava {
-    extensions.configure<org.javamodularity.moduleplugin.extensions.CompileTestModuleOptions> {
-        isCompileOnClasspath = true
-    }
-}
-
 tasks.test {
     useJUnitPlatform()
-    extensions.configure<org.javamodularity.moduleplugin.extensions.TestModuleOptions> {
-        runOnClasspath = true
-    }
 }

@@ -1,3 +1,14 @@
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+
+    dependencies {
+        classpath("org.glavo:module-info-compiler:1.2")
+    }
+}
+
+
 plugins {
     `java-library`
     id("com.github.johnrengelman.shadow") version "7.1.2"
@@ -11,22 +22,21 @@ repositories {
     }
 }
 
-tasks.compileJava {
-    sourceCompatibility = "9"
-    targetCompatibility = "9"
+val compileModuleInfo = tasks.create<org.glavo.mic.tasks.CompileModuleInfo>("compileModuleInfo") {
+    sourceFile.set(file("src/main/module-info.java"))
+    targetFile.set(buildDir.resolve("classes/java/main/module-info/module-info.class"))
+}
 
-    modularity.inferModulePath.set(true)
+tasks.compileJava {
+    options.release.set(8)
 }
 
 dependencies {
     testImplementation("junit:junit:4.13.2")
 
+    compileOnly("javafx:jfx8")
     api(project(":VirtualizedFX"))
     api(project(":adapter"))
-}
-
-javafx {
-    configuration = "compileOnly"
 }
 
 tasks.javadoc {
@@ -69,6 +79,10 @@ publishing {
 }
 
 tasks.jar {
+    dependsOn(compileModuleInfo)
+
+    from(compileModuleInfo.targetFile)
+
     manifest {
         attributes(
             "Bundle-Name" to project.name,
