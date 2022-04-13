@@ -236,7 +236,7 @@ public class MFXComboBoxSkin<T> extends MFXTextFieldSkin {
 			if (comboBox.getItems().isEmpty()) return;
 			comboBox.show();
 		};
-		popup.setContent(createPopupContent());
+		popup.setContentNode(createPopupContent());
 		return popup;
 	}
 
@@ -246,7 +246,7 @@ public class MFXComboBoxSkin<T> extends MFXTextFieldSkin {
 	protected Node createPopupContent() {
 		MFXComboBox<T> comboBox = getComboBox();
 		if (virtualFlow == null) {
-			virtualFlow = new SimpleVirtualFlow<>(
+			virtualFlow = new SimpleVirtualFlow<T, Cell<T>>(
 					comboBox.itemsProperty(),
 					comboBox.getCellFactory(),
 					Orientation.VERTICAL

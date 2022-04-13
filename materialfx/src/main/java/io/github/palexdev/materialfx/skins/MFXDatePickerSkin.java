@@ -135,7 +135,7 @@ public class MFXDatePickerSkin extends MFXTextFieldSkin {
 	//================================================================================
 	protected void initialize() {
 		MFXDatePicker datePicker = getDatePicker();
-		popup.setContent(createPopupContent());
+		popup.setContentNode(createPopupContent());
 
 		LocalDate date = datePicker.getValue();
 		if (date != null) {
@@ -294,7 +294,7 @@ public class MFXDatePickerSkin extends MFXTextFieldSkin {
 	protected Node createPopupContent() {
 		MFXDatePicker datePicker = getDatePicker();
 
-		MFXComboBox<Month> monthCombo = new MFXComboBox<>(FXCollections.observableArrayList(Month.values())) {
+		MFXComboBox<Month> monthCombo = new MFXComboBox<Month>(FXCollections.observableArrayList(Month.values())) {
 			@Override
 			public String getUserAgentStylesheet() {
 				return datePicker.getUserAgentStylesheet();
@@ -312,7 +312,7 @@ public class MFXDatePickerSkin extends MFXTextFieldSkin {
 			updateGrid();
 		});
 
-		MFXComboBox<Integer> yearCombo = new MFXComboBox<>(years) {
+		MFXComboBox<Integer> yearCombo = new MFXComboBox<Integer>(years) {
 			@Override
 			public String getUserAgentStylesheet() {
 				return datePicker.getUserAgentStylesheet();
@@ -398,7 +398,7 @@ public class MFXDatePickerSkin extends MFXTextFieldSkin {
 				label.setAlignment(Pos.CENTER);
 				weekDaysLabels.add(label);
 			}
-			grid.addRow(0, weekDaysLabels.toArray(Node[]::new));
+			grid.addRow(0, weekDaysLabels.toArray(new Node[0]));
 			return;
 		}
 
@@ -476,7 +476,7 @@ public class MFXDatePickerSkin extends MFXTextFieldSkin {
 			}
 
 			if (!cellsInitialized) {
-				grid.addRow(row, children.toArray(Node[]::new));
+				grid.addRow(row, children.toArray(new Node[0]));
 			}
 
 			children.clear();

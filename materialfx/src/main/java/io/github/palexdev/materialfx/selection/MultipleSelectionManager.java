@@ -305,7 +305,7 @@ public class MultipleSelectionManager<T> {
 	 * The values order is kept since the selection is backed by a {@link LinkedHashMap}.
 	 */
 	public List<T> getSelectedValues() {
-		return List.copyOf(selection.values());
+		return new ArrayList<>(selection.values());
 	}
 
 	/**
