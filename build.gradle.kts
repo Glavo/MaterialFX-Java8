@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "io.github.palexdev"
-version = "11.13.4"
+version = "11.13.5"
 
 loadMavenPublishProperties()
 
