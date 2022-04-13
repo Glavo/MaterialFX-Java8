@@ -24,7 +24,6 @@ allprojects {
 
 }
 
-
 subprojects {
     if (project.hasProperty("POM_ARTIFACT_ID")) {
         apply {
