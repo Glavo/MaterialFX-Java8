@@ -59,9 +59,7 @@ tasks.javadoc {
 }
 
 tasks.create<Jar>("javadocJar") {
-    dependsOn(tasks.javadoc)
     archiveClassifier.set("javadoc")
-    from(tasks.javadoc.get().destinationDir)
 }
 
 tasks.create<Jar>("sourcesJarBuild") {
