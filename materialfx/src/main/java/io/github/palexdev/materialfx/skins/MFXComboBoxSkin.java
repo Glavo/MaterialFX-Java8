@@ -58,17 +58,7 @@ public class MFXComboBoxSkin<T> extends MFXTextFieldSkin {
 	public MFXComboBoxSkin(MFXComboBox<T> comboBox, BoundTextField boundField) {
 		super(comboBox, boundField);
 
-		popup = new MFXPopup();
-		popup.getStyleClass().add("combo-popup");
-		popup.setPopupStyleableParent(comboBox);
-		popup.setAutoHide(true);
-		popup.setConsumeAutoHidingEvents(true);
-		popupManager = event -> {
-			if (comboBox.getItems().isEmpty()) return;
-			comboBox.show();
-		};
-
-		initialize();
+		popup = createPopup();
 		setBehavior();
 
 		T selectedItem = comboBox.getSelectedItem();
@@ -80,10 +70,6 @@ public class MFXComboBoxSkin<T> extends MFXTextFieldSkin {
 	//================================================================================
 	// Methods
 	//================================================================================
-	protected void initialize() {
-		popup.setContentNode(createPopupContent());
-	}
-
 	protected void setBehavior() {
 		comboBehavior();
 		selectionBehavior();
@@ -232,16 +218,44 @@ public class MFXComboBoxSkin<T> extends MFXTextFieldSkin {
 	}
 
 	/**
+	 * Responsible for creating the combo box's popup.
+	 */
+	protected MFXPopup createPopup() {
+		MFXComboBox<T> comboBox = getComboBox();
+		MFXPopup popup = new MFXPopup() {
+			@Override
+			public String getUserAgentStylesheet() {
+				return comboBox.getUserAgentStylesheet();
+			}
+		};
+		popup.getStyleClass().add("combo-popup");
+		popup.setPopupStyleableParent(comboBox);
+		popup.setAutoHide(true);
+		popup.setConsumeAutoHidingEvents(true);
+		popupManager = event -> {
+			if (comboBox.getItems().isEmpty()) return;
+			comboBox.show();
+		};
+		popup.setContentNode(createPopupContent());
+		return popup;
+	}
+
+	/**
 	 * Responsible for creating the popup's content.
 	 */
 	protected Node createPopupContent() {
 		MFXComboBox<T> comboBox = getComboBox();
 		if (virtualFlow == null) {
-			virtualFlow = new SimpleVirtualFlow<>(
+			virtualFlow = new SimpleVirtualFlow<T, Cell<T>>(
 					comboBox.itemsProperty(),
 					comboBox.getCellFactory(),
 					Orientation.VERTICAL
-			);
+			) {
+				@Override
+				public String getUserAgentStylesheet() {
+					return comboBox.getUserAgentStylesheet();
+				}
+			};
 			virtualFlow.cellFactoryProperty().bind(comboBox.cellFactoryProperty());
 			virtualFlow.prefWidthProperty().bind(comboBox.widthProperty());
 		}
