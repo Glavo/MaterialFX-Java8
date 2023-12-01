@@ -20,6 +20,7 @@ package io.github.palexdev.materialfx.beans;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.scene.Node;
 
 import java.util.Objects;
 
