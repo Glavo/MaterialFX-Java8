@@ -1,5 +1,6 @@
 package org.glavo.materialfx.adapter.skin;
 
+import com.sun.javafx.tk.TKStage;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Window;
@@ -40,7 +41,9 @@ public class SnapUtils {
         if (scene == null) return 1.0;
         Window window = scene.getWindow();
         if (window == null) return 1.0;
-        return window.impl_getPeer().getRenderScale();
+        TKStage peer = window.impl_getPeer();
+        if (peer == null) return 1.0;
+        return peer.getRenderScale();
     }
 
     private static double snapSpaceX(Region region, double value, boolean snapToPixel) {
