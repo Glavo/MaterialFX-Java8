@@ -135,7 +135,7 @@ public class MFXToggleButtonSkin extends MFXLabeledSkinBase<MFXToggleButton> {
 		NodeUtils.waitForSkin(
 				toggleButton,
 				() -> {
-					double endX = toggleButton.isSelected() ? line.getLayoutBounds().getWidth() - circle.getRadius() * 2 : 0;
+					double endX = toggleButton.isSelected() ? line.prefWidth(-1) - circle.getRadius() * 2 : 0;
 					TimelineBuilder.build().add(KeyFrames.of(150, circle.translateXProperty(), endX, Interpolators.INTERPOLATOR_V1)).getAnimation().play();
 				},
 				false,

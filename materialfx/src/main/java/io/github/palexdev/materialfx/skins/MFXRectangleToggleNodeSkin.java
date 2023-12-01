@@ -80,6 +80,8 @@ public class MFXRectangleToggleNodeSkin extends SkinBase<MFXRectangleToggleNode>
 		setupRippleGenerator();
 		setListeners();
 		getChildren().setAll(container);
+
+		label.setStyle("-fx-border-color: yellow;");
 	}
 
 	//================================================================================

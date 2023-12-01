@@ -5,6 +5,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Window;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
+
 @SuppressWarnings("deprecation")
 public class SnapUtils {
     private SnapUtils() {
@@ -36,14 +40,30 @@ public class SnapUtils {
         return snapToPixel ? scaledRound(value, getSnapScale(region)) : value;
     }
 
+    private static final MethodHandle IMPL_GETPEER_HANDLE = Utils.invoke(() -> MethodHandles.publicLookup()
+            .findVirtual(
+                    Window.class,
+                    "impl_getPeer",
+                    MethodType.methodType(TKStage.class)
+            ));
+
+    private static final MethodHandle GET_RENDER_SCALE_HANDLE = Utils.invoke(() -> MethodHandles.publicLookup()
+            .findVirtual(
+                    TKStage.class,
+                    "getRenderScale",
+                    MethodType.methodType(float.class)
+            ));
+
     private static double getSnapScale(Region region) {
         Scene scene = region.getScene();
         if (scene == null) return 1.0;
         Window window = scene.getWindow();
         if (window == null) return 1.0;
-        TKStage peer = window.impl_getPeer();
-        if (peer == null) return 1.0;
-        return peer.getRenderScale();
+        return Utils.invoke(() -> {
+            TKStage peer = (TKStage) IMPL_GETPEER_HANDLE.invoke(window);
+            if (peer == null) return 1.0D;
+            return ((Float) GET_RENDER_SCALE_HANDLE.invoke(peer)).doubleValue();
+        });
     }
 
     private static double snapSpaceX(Region region, double value, boolean snapToPixel) {

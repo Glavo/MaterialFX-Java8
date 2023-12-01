@@ -270,7 +270,7 @@ public class MFXPopup extends PopupControl implements MFXStyleablePopup {
 	private double computeHPos(Node node, HPos hPos, double xOffset) {
 		double x;
 		double contentWidth = getContentNode().prefWidth(-1);
-		double ownerWidth = node.getLayoutBounds().getWidth();
+		double ownerWidth = node.prefWidth(-1);
 		switch (hPos) {
 			case LEFT:
 				x = -Math.abs((contentWidth - ownerWidth));
@@ -291,7 +291,7 @@ public class MFXPopup extends PopupControl implements MFXStyleablePopup {
 	 * Computes the y coordinate shift according to the given {@link VPos} and y offset.
 	 */
 	private double computeVPos(Node node, VPos vPos, double yOffset) {
-		return (vPos == VPos.BOTTOM ? node.getLayoutBounds().getHeight() : 0) + yOffset;
+		return (vPos == VPos.BOTTOM ? node.prefHeight(-1) : 0) + yOffset;
 	}
 
 	//================================================================================
