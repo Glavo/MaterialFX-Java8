@@ -114,7 +114,7 @@ public class PositionUtils {
 
 		final double leftMargin = snappedMargin.getLeft();
 		final double rightMargin = snappedMargin.getRight();
-		final double xOffset = leftMargin + computeXOffset(areaWidth - leftMargin - rightMargin, child.getLayoutBounds().getWidth(), hAlignment);
+		final double xOffset = leftMargin + computeXOffset(areaWidth - leftMargin - rightMargin, child.prefWidth(-1), hAlignment);
 		final double xPosition = areaX + xOffset;
 		return snapToPixel ? SnapUtils.snapPositionX(parent, xPosition) : xPosition;
 	}
@@ -137,12 +137,12 @@ public class PositionUtils {
 			double bo = child.getBaselineOffset();
 			if (bo == Node.BASELINE_OFFSET_SAME_AS_HEIGHT) {
 				// We already know the layout bounds at this stage, so we can use them
-				yOffset = areaBaselineOffset - child.getLayoutBounds().getHeight();
+				yOffset = areaBaselineOffset - child.prefHeight(-1);
 			} else {
 				yOffset = areaBaselineOffset - bo;
 			}
 		} else {
-			yOffset = topMargin + computeYOffset(areaHeight - topMargin - bottomMargin, child.getLayoutBounds().getHeight(), vAlignment);
+			yOffset = topMargin + computeYOffset(areaHeight - topMargin - bottomMargin, child.prefHeight(-1), vAlignment);
 		}
 		final double yPosition = areaY + yOffset;
 		return snapToPixel ? SnapUtils.snapPositionY(parent, yPosition) : yPosition;

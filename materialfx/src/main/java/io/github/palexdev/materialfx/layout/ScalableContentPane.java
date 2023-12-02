@@ -150,8 +150,8 @@ public class ScalableContentPane extends Region {
 		double leftAndRight = getInsets().getLeft() + getInsets().getRight();
 		double topAndBottom = getInsets().getTop() + getInsets().getBottom();
 
-		double contentWidth = getLayoutBounds().getWidth() - leftAndRight;
-		double contentHeight = getLayoutBounds().getHeight() - topAndBottom;
+		double contentWidth = prefWidth(-1) - leftAndRight;
+		double contentHeight = prefHeight(-1) - topAndBottom;
 
 		scaleWidth = contentWidth / realWidth;
 		scaleHeight = contentHeight / realHeight;
@@ -172,7 +172,7 @@ public class ScalableContentPane extends Region {
 				scale.setX(scaleValue);
 				scale.setY(scaleValue);
 			} else if (getScaleBehavior() == ScaleBehavior.IF_NECESSARY) {
-				if (scaleValue < scale.getX() && getLayoutBounds().getWidth() > 0) {
+				if (scaleValue < scale.getX() && prefWidth(-1) > 0) {
 					scale.setX(scaleValue);
 					scale.setY(scaleValue);
 				}
@@ -182,10 +182,10 @@ public class ScalableContentPane extends Region {
 			scale.setX(scaleWidth);
 			scale.setY(scaleHeight);
 		} else if (getScaleBehavior() == ScaleBehavior.IF_NECESSARY) {
-			if (scaleWidth < scale.getX() && getLayoutBounds().getWidth() > 0) {
+			if (scaleWidth < scale.getX() && prefWidth(-1) > 0) {
 				scale.setX(scaleWidth);
 			}
-			if (scaleHeight < scale.getY() && getLayoutBounds().getHeight() > 0) {
+			if (scaleHeight < scale.getY() && prefHeight(-1) > 0) {
 				scale.setY(scaleHeight);
 			}
 		}

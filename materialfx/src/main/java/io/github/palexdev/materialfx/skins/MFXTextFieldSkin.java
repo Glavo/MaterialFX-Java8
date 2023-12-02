@@ -132,11 +132,16 @@ public class MFXTextFieldSkin extends SkinBase<MFXTextField> {
 
 		// Handle Floating
 		floatingPos.addListener((observable, oldValue, newValue) -> handleFloatingText());
-		boundField.layoutBoundsProperty().addListener(invalidated -> {
+		boundField.prefWidthProperty().addListener(invalidated -> {
 			skipLayout = true;
 			textField.requestLayout();
 		});
-		floatingText.layoutBoundsProperty().addListener(invalidated -> skipLayout = true);
+		boundField.prefHeightProperty().addListener(invalidated -> {
+			skipLayout = true;
+			textField.requestLayout();
+		});
+		floatingText.prefWidthProperty().addListener(invalidated -> skipLayout = true);
+		floatingText.prefHeightProperty().addListener(invalidated -> skipLayout = true);
 		textField.scaleOnAboveProperty().addListener((observable, oldValue, newValue) -> textField.requestLayout());
 		textField.promptTextProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue.isEmpty() && !isFloating()) textField.requestLayout();
