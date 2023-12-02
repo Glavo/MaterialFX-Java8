@@ -111,11 +111,6 @@ public class MFXTextFieldSkin extends SkinBase<MFXTextField> {
 
 		updateTextColor(textField.getTextFill());
 		addListeners();
-
-		textField.setStyle("-fx-border-color: red;");
-		floatingText.setStyle("-fx-border-color: green;");
-		boundField.setStyle("-fx-border-color: blue;");
-		mUnitLabel.setStyle("-fx-border-color: yellow;");
 	}
 
 	//================================================================================
